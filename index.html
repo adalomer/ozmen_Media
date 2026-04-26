@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="Özmen Media — Sosyal medya yönetimi, içerik üretimi ve dijital pazarlama çözümleri. Instagram, Facebook, WhatsApp ve daha fazlası.">
+	<title>Özmen Media — Sosyal Medya Çözümleri</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+	<div class="cursor-glow" id="cursorGlow"></div>
+
+	<!-- NAVBAR -->
+	<nav class="navbar" id="navbar">
+		<a href="#" class="nav-logo">ÖZMEN<span style="font-weight:400; opacity:0.7">media</span></a>
+		<ul class="nav-links">
+			<li><a href="#hizmetler">Hizmetler</a></li>
+			<li><a href="#portfolio">Portfolyo</a></li>
+			<li><a href="#süreç">Süreç</a></li>
+			<li><a href="#yorumlar">Yorumlar</a></li>
+		</ul>
+		<a href="#iletisim" class="nav-cta">İletişime Geç</a>
+		<button class="hamburger" id="hamburger" aria-label="Menüyü aç">
+			<span></span><span></span><span></span>
+		</button>
+	</nav>
+
+	<!-- MOBILE MENU -->
+	<div class="mobile-menu" id="mobileMenu">
+		<a href="#hizmetler" onclick="closeMenu()">Hizmetler</a>
+		<a href="#portfolio" onclick="closeMenu()">Portfolyo</a>
+		<a href="#süreç" onclick="closeMenu()">Süreç</a>
+		<a href="#yorumlar" onclick="closeMenu()">Yorumlar</a>
+		<a href="#iletisim" onclick="closeMenu()" class="btn-primary" style="margin-top:16px">İletişime Geç</a>
+	</div>
+
+	<!-- HERO -->
+	<section class="hero">
+		<div class="hero-bg"></div>
+		<div class="hero-content float-in">
+			<div class="hero-badge">
+				<span class="dot"></span>
+				Yeni müşteriler kabul ediliyor
+			</div>
+			<h1>Sosyal Medyanızı<br><span class="gradient-text">Zirveye Taşıyalım</span></h1>
+			<p>Instagram, Facebook, WhatsApp Business ve daha fazlası — markanızı dijital dünyada büyütecek stratejik
+				çözümler sunuyoruz.</p>
+			<div class="hero-buttons">
+				<a href="#iletisim" class="btn-primary">
+					Ücretsiz Analiz Al
+					<i class="fas fa-arrow-right"></i>
+				</a>
+				<a href="#portfolio" class="btn-secondary">Çalışmalarımızı Gör</a>
+			</div>
+			<div class="hero-stats">
+				<div class="stat">
+					<h3>50+</h3>
+					<p>Mutlu Müşteri</p>
+				</div>
+				<div class="stat">
+					<h3>120+</h3>
+					<p>Tamamlanan Proje</p>
+				</div>
+				<div class="stat">
+					<h3>%340</h3>
+					<p>Ortalama Büyüme</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SERVICES -->
+	<section id="hizmetler">
+		<div class="section-header reveal">
+			<span class="tag">Hizmetler</span>
+			<h2>Neler Yapıyoruz?</h2>
+			<p>İşletmenizin dijital varlığını güçlendirmek için ihtiyacınız olan her şey burada.</p>
+		</div>
+		<div class="services-grid">
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fab fa-instagram" style="color:#e1306c"></i></div>
+				<h3>Instagram Yönetimi</h3>
+				<p>Profesyonel içerik planlaması, hikâye tasarımı, Reels üretimi ve organik büyüme stratejileri ile
+					hesabınızı yönetiyoruz.</p>
+			</div>
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fab fa-facebook" style="color:#1877f2"></i></div>
+				<h3>Facebook Yönetimi</h3>
+				<p>Sayfa optimizasyonu, topluluk yönetimi, reklam kampanyaları ve hedef kitle analizi ile Facebook
+					varlığınızı güçlendiriyoruz.</p>
+			</div>
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fab fa-whatsapp" style="color:#25d366"></i></div>
+				<h3>WhatsApp Business</h3>
+				<p>Otomatik yanıtlar, katalog oluşturma, müşteri iletişim yönetimi ve WhatsApp pazarlama stratejileri
+					geliştiriyoruz.</p>
+			</div>
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fas fa-camera" style="color:var(--accent-light)"></i></div>
+				<h3>İçerik Üretimi</h3>
+				<p>Fotoğraf çekimi, video düzenleme, grafik tasarım ve copywriting – markanıza özel içerikler
+					üretiyoruz.</p>
+			</div>
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fas fa-bullhorn" style="color:#fd79a8"></i></div>
+				<h3>Reklam Yönetimi</h3>
+				<p>Meta Ads, Google Ads ve TikTok reklamları ile bütçenizi en verimli şekilde kullanarak dönüşüm
+					sağlıyoruz.</p>
+			</div>
+			<div class="service-card reveal">
+				<div class="service-icon"><i class="fas fa-chart-line" style="color:#00b894"></i></div>
+				<h3>Strateji & Danışmanlık</h3>
+				<p>Marka analizi, rakip analizi, içerik stratejisi ve aylık raporlama ile işinizi büyütmenize yardımcı
+					oluyoruz.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- PORTFOLIO -->
+	<section id="portfolio" style="background: var(--bg-secondary)">
+		<div class="section-header reveal">
+			<span class="tag">Portfolyo</span>
+			<h2>Çalışmalarımızdan Örnekler</h2>
+			<p>Farklı sektörlerden işletmelere sunduğumuz çözümlerin sonuçları.</p>
+		</div>
+		<div class="portfolio-grid">
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #e1306c22, #833ab422); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fab fa-instagram" style="color:#e1306c"></i></div>
+					<div class="portfolio-overlay"><span>Instagram</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>Bella Güzellik Salonu</h3>
+					<p>3 ayda 2K'dan 15K takipçiye organik büyüme. Randevu oranı %180 arttı.</p>
+					<div class="portfolio-tags">
+						<span>Instagram</span><span>İçerik Üretimi</span><span>+%650 Büyüme</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #1877f222, #4267b222); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fab fa-facebook" style="color:#1877f2"></i></div>
+					<div class="portfolio-overlay"><span>Facebook</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>Lezzet Durağı Restaurant</h3>
+					<p>Facebook reklam kampanyasıyla aylık sipariş %240 arttı. Yerel bilinirlik sağlandı.</p>
+					<div class="portfolio-tags">
+						<span>Facebook Ads</span><span>Yerel SEO</span><span>+%240 Sipariş</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #25d36622, #128c7e22); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fab fa-whatsapp" style="color:#25d366"></i></div>
+					<div class="portfolio-overlay"><span>WhatsApp</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>Atlas Emlak</h3>
+					<p>WhatsApp Business katalogu ve otomatik yanıt sistemiyle müşteri dönüşüm oranı %320 yükseldi.</p>
+					<div class="portfolio-tags">
+						<span>WhatsApp Business</span><span>Otomasyon</span><span>+%320 Dönüşüm</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #6c5ce722, #a29bfe22); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fas fa-store" style="color:var(--accent-light)"></i></div>
+					<div class="portfolio-overlay"><span>Çoklu Platform</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>Trend Butik</h3>
+					<p>Instagram + Facebook + WhatsApp entegre yönetimi. Online satışlar 4 ayda 5 kat arttı.</p>
+					<div class="portfolio-tags">
+						<span>Çoklu Platform</span><span>E-ticaret</span><span>5x Satış</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #fd79a822, #e1708822); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fas fa-dumbbell" style="color:#fd79a8"></i></div>
+					<div class="portfolio-overlay"><span>Instagram</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>FitLife Spor Salonu</h3>
+					<p>Reels stratejisiyle 1 ayda 50K+ görüntülenme. Üyelik sayısı %150 arttı.</p>
+					<div class="portfolio-tags">
+						<span>Reels</span><span>Video İçerik</span><span>50K+ Görüntülenme</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="portfolio-card reveal">
+				<div class="portfolio-img-wrapper">
+					<div class="portfolio-img"
+						style="height:220px; background: linear-gradient(135deg, #00b89422, #00896422); display:flex; align-items:center; justify-content:center; font-size:3rem;">
+						<i class="fas fa-tooth" style="color:#00b894"></i></div>
+					<div class="portfolio-overlay"><span>Facebook Ads</span></div>
+				</div>
+				<div class="portfolio-info">
+					<h3>Dental Plus Klinik</h3>
+					<p>Hedefli reklam kampanyasıyla aylık hasta sayısı %200 arttı. Maliyet/hasta %60 düştü.</p>
+					<div class="portfolio-tags">
+						<span>Meta Ads</span><span>Sağlık</span><span>+%200 Hasta</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- PROCESS -->
+	<section id="süreç">
+		<div class="section-header reveal">
+			<span class="tag">Nasıl Çalışıyoruz?</span>
+			<h2>4 Adımda Başarı</h2>
+			<p>Sizinle birlikte planlıyoruz, uyguluyoruz ve sonuç alıyoruz.</p>
+		</div>
+		<div class="process-container">
+			<div class="process-line"></div>
+			<div class="process-step reveal">
+				<div class="process-number">01</div>
+				<div class="process-content">
+					<h3>Analiz & Keşif</h3>
+					<p>İşletmenizi, hedef kitlenizi ve rakiplerinizi analiz ediyoruz. Mevcut dijital varlığınızı
+						inceliyoruz.</p>
+				</div>
+			</div>
+			<div class="process-step reveal">
+				<div class="process-number">02</div>
+				<div class="process-content">
+					<h3>Strateji Oluşturma</h3>
+					<p>Size özel içerik takvimi, reklam stratejisi ve büyüme planı hazırlıyoruz.</p>
+				</div>
+			</div>
+			<div class="process-step reveal">
+				<div class="process-number">03</div>
+				<div class="process-content">
+					<h3>Uygulama & Üretim</h3>
+					<p>İçerikleri üretiyor, hesaplarınızı yönetiyor ve reklam kampanyalarını başlatıyoruz.</p>
+				</div>
+			</div>
+			<div class="process-step reveal">
+				<div class="process-number">04</div>
+				<div class="process-content">
+					<h3>Raporlama & Optimizasyon</h3>
+					<p>Aylık detaylı raporlarla sonuçları paylaşıyor, stratejileri sürekli iyileştiriyoruz.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- TESTIMONIALS -->
+	<section id="yorumlar" style="background: var(--bg-secondary)">
+		<div class="section-header reveal">
+			<span class="tag">Müşteri Yorumları</span>
+			<h2>Ne Diyorlar?</h2>
+			<p>Çalıştığımız işletmelerin deneyimleri.</p>
+		</div>
+		<div class="testimonials-container">
+			<div class="testimonial-card reveal">
+				<div class="testimonial-stars">★★★★★</div>
+				<p class="testimonial-text">"Özmen Media ile çalışmaya başladıktan sonra Instagram takipçilerimiz 3 ayda
+					7 kat arttı. Profesyonel yaklaşımları ve yaratıcı içerikleri ile gerçekten fark yarattılar."</p>
+				<div class="testimonial-author">
+					<div class="testimonial-avatar">AY</div>
+					<div>
+						<div class="testimonial-name">Ayşe Yılmaz</div>
+						<div class="testimonial-role">Bella Güzellik Salonu</div>
+					</div>
+				</div>
+			</div>
+			<div class="testimonial-card reveal">
+				<div class="testimonial-stars">★★★★★</div>
+				<p class="testimonial-text">"WhatsApp Business kurulumu ve Facebook reklamları sayesinde siparişlerimiz
+					inanılmaz arttı. Tek kişi olmasına rağmen müthiş bir iş çıkarıyor!"</p>
+				<div class="testimonial-author">
+					<div class="testimonial-avatar">MK</div>
+					<div>
+						<div class="testimonial-name">Mehmet Kaya</div>
+						<div class="testimonial-role">Lezzet Durağı Restaurant</div>
+					</div>
+				</div>
+			</div>
+			<div class="testimonial-card reveal">
+				<div class="testimonial-stars">★★★★★</div>
+				<p class="testimonial-text">"Sosyal medya konusunda hiçbir bilgim yoktu. Özmen Media her adımda yanımda
+					oldu ve işletmemi dijital dünyada görünür hale getirdi. Kesinlikle tavsiye ederim."</p>
+				<div class="testimonial-author">
+					<div class="testimonial-avatar">SK</div>
+					<div>
+						<div class="testimonial-name">Selin Koç</div>
+						<div class="testimonial-role">Trend Butik</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="cta-section" id="iletisim">
+		<div class="reveal">
+			<h2>Markanızı <span class="gradient-text">Büyütmeye Hazır Mısınız?</span></h2>
+			<p>Ücretsiz dijital analiz için hemen iletişime geçin. İlk görüşme ücretsizdir.</p>
+			<div class="hero-buttons" style="margin-top: 32px;">
+				<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="btn-primary">
+					<i class="fab fa-whatsapp"></i>
+					WhatsApp ile Yaz
+				</a>
+				<a href="https://instagram.com/ozmenmedia" target="_blank" class="btn-secondary">
+					<i class="fab fa-instagram"></i>
+					Instagram'dan Ulaş
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="footer">
+		<div class="footer-content">
+			<div class="footer-brand">
+				<h3>ÖZMEN<span style="font-weight:400; opacity:0.7">media</span></h3>
+				<p>Dijital dünyada markanızı büyüten yaratıcı çözüm ortağınız. Instagram, Facebook, WhatsApp ve daha
+					fazlası.</p>
+			</div>
+			<div class="footer-links">
+				<h4>Hızlı Erişim</h4>
+				<ul>
+					<li><a href="#hizmetler">Hizmetler</a></li>
+					<li><a href="#portfolio">Portfolyo</a></li>
+					<li><a href="#süreç">Süreç</a></li>
+					<li><a href="#yorumlar">Yorumlar</a></li>
+					<li><a href="#iletisim">İletişim</a></li>
+				</ul>
+			</div>
+			<div class="footer-links">
+				<h4>İletişim</h4>
+				<ul>
+					<li><a href="mailto:info@ozmenmedia.com"><i class="fas fa-envelope"
+								style="margin-right:8px"></i>info@ozmenmedia.com</a></li>
+					<li><a href="tel:+905XXXXXXXXX"><i class="fas fa-phone" style="margin-right:8px"></i>+90 5XX XXX XX
+							XX</a></li>
+					<li><a href="#"><i class="fas fa-map-marker-alt" style="margin-right:8px"></i>Türkiye</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<p>&copy; 2026 Özmen Media. Tüm hakları saklıdır.</p>
+			<div class="social-links">
+				<a href="https://instagram.com/ozmenmedia" target="_blank" aria-label="Instagram"><i
+						class="fab fa-instagram"></i></a>
+				<a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+				<a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
