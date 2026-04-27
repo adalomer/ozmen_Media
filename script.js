@@ -1,5 +1,5 @@
-/* Özmen Media — Scroll-Driven Animations
-   GSAP + ScrollTrigger (CDN) — Native scroll only
+/* Özmen Media — Scroll-Driven Storytelling Animations
+   GSAP + ScrollTrigger (CDN) — dontboardme.com style
 */
 
 gsap.registerPlugin(ScrollTrigger);
@@ -15,25 +15,25 @@ var loadInterval = setInterval(function () {
 	if (loaded >= 100) {
 		setTimeout(function () {
 			preloader.classList.add('done');
-			initAnimations();
+			runAnimations();
 		}, 300);
 	}
 }, 120);
 
-// ========== NAVBAR ==========
+// ========== NAV ==========
 var navbar = document.getElementById('navbar');
+var lastScroll = 0;
 
-ScrollTrigger.create({
-	start: 'top -80',
-	onUpdate: function (self) {
-		navbar.classList.toggle('scrolled', self.scroll() > 80);
-		if (self.direction === 1 && self.scroll() > 400) {
-			gsap.to(navbar, { y: -100, duration: 0.3, ease: 'power2.in' });
-		} else {
-			gsap.to(navbar, { y: 0, duration: 0.3, ease: 'power2.out' });
-		}
+window.addEventListener('scroll', function () {
+	var current = window.scrollY;
+	navbar.classList.toggle('scrolled', current > 80);
+	if (current > 400 && current > lastScroll) {
+		navbar.classList.add('hidden');
+	} else {
+		navbar.classList.remove('hidden');
 	}
-});
+	lastScroll = current;
+}, { passive: true });
 
 // ========== MOBILE MENU ==========
 var hamburger = document.getElementById('hamburger');
@@ -69,40 +69,36 @@ document.addEventListener('click', function (e) {
 	}
 });
 
-// ========== MAIN ANIMATIONS ==========
-function initAnimations() {
-	var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+// ========== MAIN SCROLL ANIMATIONS ==========
+function runAnimations() {
 
-	// Hero title lines
-	tl.to('.title-line .line-inner', {
-		y: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out'
-	})
-		.to('#heroBadge', { opacity: 1, y: 0, duration: 0.8 }, '-=0.8')
-		.to('#heroDesc', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-		.to('#heroActions', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-		.to('#scrollIndicator', { opacity: 1, duration: 0.6 }, '-=0.3');
+	// --- HERO PANEL entrance ---
+	var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-	// Floating cards bounce in
-	gsap.utils.toArray('.hero-float').forEach(function (el, i) {
-		gsap.from(el, { opacity: 0, scale: 0.5, duration: 0.8, delay: 1.2 + i * 0.15, ease: 'back.out(1.7)' });
-	});
+	heroTl
+		.to('#hero .reveal-up', { opacity: 1, y: 0, duration: 1, stagger: 0.15 })
+		.to('#hero .reveal-scale', { opacity: 1, scale: 1, duration: 1.2, ease: 'back.out(1.4)' }, '-=0.6');
 
-	// Blob gentle float
-	gsap.utils.toArray('.blob').forEach(function (blob, i) {
+	// Blobs float
+	gsap.utils.toArray('.bg-blob').forEach(function (blob, i) {
 		gsap.to(blob, {
 			x: (i % 2 === 0) ? 30 : -25,
-			y: (i % 2 === 0) ? -25 : 30,
-			duration: 5 + i, yoyo: true, repeat: -1, ease: 'sine.inOut'
+			y: (i % 2 === 0) ? -20 : 25,
+			duration: 5 + i * 1.5, yoyo: true, repeat: -1, ease: 'sine.inOut'
 		});
 	});
 
-	// Hero parallax
-	gsap.to('.hero-content', {
-		scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-		y: -80, opacity: 0.3
+	// Hero parallax on scroll
+	gsap.to('#hero .hero-text', {
+		scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
+		y: -80, opacity: 0.2
+	});
+	gsap.to('#hero .hero-illustration', {
+		scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
+		y: -40, opacity: 0.3
 	});
 
-	// ========== STATS COUNTER ==========
+	// --- STATS COUNTER ---
 	document.querySelectorAll('.stat-number').forEach(function (el) {
 		var target = parseInt(el.getAttribute('data-count'));
 		ScrollTrigger.create({
@@ -119,73 +115,107 @@ function initAnimations() {
 		});
 	});
 
-	// ========== SECTION TAGS & TITLES ==========
-	document.querySelectorAll('.section-tag').forEach(function (tag) {
-		gsap.to(tag, {
-			scrollTrigger: { trigger: tag, start: 'top 85%', once: true },
-			opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)'
-		});
+	gsap.to('.stats-inner', {
+		scrollTrigger: { trigger: '.stats-bar', start: 'top 85%', once: true },
+		opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)'
 	});
 
-	document.querySelectorAll('.section-title .line-inner').forEach(function (line) {
-		gsap.to(line, {
-			scrollTrigger: { trigger: line, start: 'top 88%', once: true },
-			opacity: 1, y: 0, duration: 1, ease: 'power4.out'
-		});
+	// --- PANEL-BY-PANEL REVEALS (dontboardme style) ---
+	// Each .panel gets its children animated on scroll
+
+	var panels = document.querySelectorAll('.panel:not(.hero-panel)');
+	panels.forEach(function (panel) {
+
+		// Reveal-up elements
+		var revealUp = panel.querySelectorAll('.reveal-up');
+		if (revealUp.length) {
+			gsap.to(revealUp, {
+				scrollTrigger: {
+					trigger: panel,
+					start: 'top 70%',
+					end: 'top 20%',
+					scrub: 0.8
+				},
+				opacity: 1, y: 0, stagger: 0.08
+			});
+		}
+
+		// Reveal-left elements
+		var revealLeft = panel.querySelectorAll('.reveal-left');
+		if (revealLeft.length) {
+			gsap.to(revealLeft, {
+				scrollTrigger: {
+					trigger: panel,
+					start: 'top 70%',
+					end: 'top 20%',
+					scrub: 0.8
+				},
+				opacity: 1, x: 0, stagger: 0.08
+			});
+		}
+
+		// Reveal-right elements
+		var revealRight = panel.querySelectorAll('.reveal-right');
+		if (revealRight.length) {
+			gsap.to(revealRight, {
+				scrollTrigger: {
+					trigger: panel,
+					start: 'top 70%',
+					end: 'top 20%',
+					scrub: 0.8
+				},
+				opacity: 1, x: 0, stagger: 0.08
+			});
+		}
+
+		// Reveal-scale elements
+		var revealScale = panel.querySelectorAll('.reveal-scale');
+		if (revealScale.length) {
+			gsap.to(revealScale, {
+				scrollTrigger: {
+					trigger: panel,
+					start: 'top 70%',
+					end: 'top 20%',
+					scrub: 0.8
+				},
+				opacity: 1, scale: 1, stagger: 0.08
+			});
+		}
 	});
 
-	// ========== BENTO CARDS ==========
-	gsap.utils.toArray('[data-service]').forEach(function (card, i) {
+	// --- PORTFOLIO CARDS special stagger ---
+	gsap.utils.toArray('.p-card').forEach(function (card, i) {
 		gsap.to(card, {
-			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
-			opacity: 1, y: 0, duration: 0.7, delay: i * 0.08, ease: 'back.out(1.4)'
-		});
-	});
-
-	// ========== PORTFOLIO HORIZONTAL SCROLL ==========
-	var track = document.getElementById('portfolioTrack');
-	if (track) {
-		var trackWidth = track.scrollWidth;
-		var viewWidth = window.innerWidth;
-
-		gsap.to(track, {
-			x: function () { return -(trackWidth - viewWidth + 48); },
-			ease: 'none',
-			scrollTrigger: {
-				trigger: '#portfolio',
-				start: 'top 10%',
-				end: function () { return '+=' + (trackWidth - viewWidth); },
-				scrub: 1.5,
-				pin: true,
-				anticipatePin: 1,
-				invalidateOnRefresh: true
-			}
-		});
-	}
-
-	// ========== WHY US ==========
-	gsap.utils.toArray('[data-why]').forEach(function (card, i) {
-		gsap.to(card, {
-			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+			scrollTrigger: { trigger: card, start: 'top 85%', once: true },
 			opacity: 1, y: 0, duration: 0.7, delay: i * 0.12, ease: 'back.out(1.4)'
 		});
 	});
 
-	// ========== TESTIMONIALS ==========
-	gsap.utils.toArray('[data-testimonial]').forEach(function (card, i) {
+	// --- WHY CARDS bounce ---
+	gsap.utils.toArray('.why-card').forEach(function (card, i) {
 		gsap.to(card, {
-			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+			scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+			opacity: 1, y: 0, duration: 0.7, delay: i * 0.12, ease: 'back.out(1.4)'
+		});
+	});
+
+	// --- TESTIMONIAL CARDS ---
+	gsap.utils.toArray('.test-card').forEach(function (card, i) {
+		gsap.to(card, {
+			scrollTrigger: { trigger: card, start: 'top 85%', once: true },
 			opacity: 1, y: 0, duration: 0.7, delay: i * 0.1, ease: 'back.out(1.4)'
 		});
 	});
 
-	// ========== CTA ==========
-	gsap.to('[data-cta]', {
-		scrollTrigger: { trigger: '[data-cta]', start: 'top 80%', once: true },
-		opacity: 1, y: 0, duration: 1, ease: 'power3.out'
+	// --- SERVICE CHIPS sequential bounce ---
+	gsap.utils.toArray('.service-chip').forEach(function (chip, i) {
+		gsap.to(chip, {
+			scrollTrigger: { trigger: chip, start: 'top 88%', once: true },
+			opacity: 1, y: 0, duration: 0.5, delay: i * 0.06, ease: 'back.out(1.7)'
+		});
 	});
 
-	// ========== SMOOTH SCROLL LINKS ==========
+	// --- SMOOTH SCROLL LINKS ---
 	document.querySelectorAll('a[href^="#"]').forEach(function (link) {
 		link.addEventListener('click', function (e) {
 			var target = document.querySelector(link.getAttribute('href'));
@@ -196,5 +226,6 @@ function initAnimations() {
 		});
 	});
 
+	// Refresh scroll triggers
 	setTimeout(function () { ScrollTrigger.refresh(); }, 300);
 }
