@@ -146,10 +146,77 @@ function initPillNav() {
 
 initPillNav();
 
+/* --- SCROLL FLOAT TEXT --- */
+function wrapCharacters(node) {
+	if (node.nodeType === 3) { // Text node
+		var text = node.nodeValue;
+		if (!text.trim()) return;
+		var fragment = document.createDocumentFragment();
+		for (var i = 0; i < text.length; i++) {
+			var char = text[i];
+			var span = document.createElement('span');
+			span.className = 'char';
+			span.textContent = char === ' ' ? '\u00A0' : char;
+			fragment.appendChild(span);
+		}
+		node.parentNode.replaceChild(fragment, node);
+	} else if (node.nodeType === 1) { // Element node
+		if (node.classList.contains('char')) return;
+		var child = node.firstChild;
+		while (child) {
+			var next = child.nextSibling;
+			wrapCharacters(child);
+			child = next;
+		}
+	}
+}
+
+function initScrollFloat() {
+	var floaters = document.querySelectorAll('.scroll-float');
+	floaters.forEach(function (el) {
+		var textWrap = el.querySelector('.scroll-float-text');
+		if (!textWrap) return;
+		
+		wrapCharacters(textWrap);
+
+		var chars = el.querySelectorAll('.char');
+		if(chars.length === 0) return;
+
+		var isHero = el.classList.contains('hero-title') || el.classList.contains('hero-desc');
+
+		gsap.fromTo(chars,
+			{
+				willChange: 'opacity, transform',
+				opacity: 0,
+				yPercent: isHero ? -120 : 120, // Hero drops from top, others come from bottom
+				scaleY: 2.3,
+				scaleX: 0.7,
+				transformOrigin: '50% 50%'
+			},
+			{
+				duration: 1,
+				ease: 'back.inOut(2)',
+				opacity: 1,
+				yPercent: 0,
+				scaleY: 1,
+				scaleX: 1,
+				stagger: 0.03,
+				scrollTrigger: isHero ? null : {
+					trigger: el,
+					start: 'top 90%',
+					toggleActions: 'play none none reverse'
+				}
+			}
+		);
+	});
+}
+
 /* ==========================
    MAIN ANIMATIONS
    ========================== */
 function startAnimations() {
+
+	initScrollFloat();
 
 	/* ========== HERO ENTRANCE ========== */
 	// Bouncy Slush style entrance
@@ -157,8 +224,6 @@ function startAnimations() {
 	
 	heroTl
 		.to('.hero-badge', { opacity: 1, scale: 1, duration: 0.7 })
-		.to('.hero-title .rev-text', { y: '0%', duration: 0.8, stagger: 0.1, ease: 'power4.out' }, '-=0.4')
-		.to('.hero-desc', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
 		.to('.hero-btns', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
 		.to('.hero-illust-wrapper', { opacity: 1, scale: 1, duration: 1, ease: 'elastic.out(1, 0.6)' }, '-=0.7')
 		.to('.fb-1', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.6')
@@ -166,7 +231,6 @@ function startAnimations() {
 		.to('.scroll-indicator', { opacity: 1, duration: 0.5, ease: 'none' }, '-=0.2');
 
 	/* ========== HERO FADE OUT ON SCROLL ========== */
-	// The user requested: "üst taraftaki sabit sıçrama sayfaları aşşağa kaydırıken kaansa daha iyi olabilir"
 	gsap.to('.hero-fade-elem', {
 		scrollTrigger: {
 			trigger: '.hero-section',
@@ -177,34 +241,6 @@ function startAnimations() {
 		y: -100,
 		opacity: 0,
 		stagger: 0.1
-	});
-
-	/* ========== FLOATING GRAFFITI ========== */
-	// Graffiti comes in from sides and stays sticky/parallax
-	gsap.to('.graffiti-left', {
-		scrollTrigger: {
-			trigger: 'body',
-			start: '200px top',
-			end: '1000px top',
-			scrub: 1
-		},
-		opacity: 1,
-		x: 0,
-		rotation: 5,
-		y: 200
-	});
-
-	gsap.to('.graffiti-right', {
-		scrollTrigger: {
-			trigger: 'body',
-			start: '400px top',
-			end: '1400px top',
-			scrub: 1
-		},
-		opacity: 1,
-		x: 0,
-		rotation: -5,
-		y: 300
 	});
 
 	/* ========== SCROLL REVEALS ========== */
@@ -221,12 +257,6 @@ function startAnimations() {
 
 		var tags = sec.querySelectorAll('.tag-slush');
 		if(tags.length) tl.to(tags, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' });
-
-		var revTexts = sec.querySelectorAll('.rev-text');
-		if(revTexts.length) tl.to(revTexts, { y: '0%', duration: 0.7, stagger: 0.1, ease: 'power3.out' }, '-=0.3');
-		
-		var desc = sec.querySelectorAll('.section-desc');
-		if(desc.length) tl.to(desc, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
 
 		var pops = sec.querySelectorAll('.anim-pop');
 		if(pops.length) tl.to(pops, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.3');
