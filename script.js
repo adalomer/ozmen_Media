@@ -1,16 +1,25 @@
 /* Özmen Media — Scroll-Driven Animations
-   GSAP + ScrollTrigger + Lenis (loaded via CDN)
+   GSAP + ScrollTrigger (CDN)
+   Lenis optional — fallback to native scroll
 */
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ========== LENIS SMOOTH SCROLL ==========
-const lenis = new Lenis({ duration: 1.2, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
-function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-gsap.ticker.lagSmoothing(0);
+// ========== SMOOTH SCROLL (with fallback) ==========
+var lenisInstance = null;
+try {
+	if (typeof Lenis !== 'undefined') {
+		lenisInstance = new Lenis({ duration: 1.2, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
+		function raf(time) { lenisInstance.raf(time); requestAnimationFrame(raf); }
+		requestAnimationFrame(raf);
+		lenisInstance.on('scroll', ScrollTrigger.update);
+		gsap.ticker.add(function (time) { lenisInstance.raf(time * 1000); });
+		gsap.ticker.lagSmoothing(0);
+	}
+} catch (e) {
+	console.log('Lenis not loaded, using native scroll');
+	lenisInstance = null;
+}
 
 // ========== PRELOADER ==========
 var preloader = document.getElementById('preloader');
@@ -27,28 +36,6 @@ var loadInterval = setInterval(function () {
 		}, 400);
 	}
 }, 150);
-
-// ========== CUSTOM CURSOR ==========
-var cursor = document.getElementById('cursor');
-var follower = document.getElementById('cursorFollower');
-var cx = 0, cy = 0, fx = 0, fy = 0;
-
-document.addEventListener('mousemove', function (e) {
-	cx = e.clientX; cy = e.clientY;
-	cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
-});
-
-function updateFollower() {
-	fx += (cx - fx) * 0.12; fy += (cy - fy) * 0.12;
-	follower.style.left = fx + 'px'; follower.style.top = fy + 'px';
-	requestAnimationFrame(updateFollower);
-}
-updateFollower();
-
-document.querySelectorAll('a, button, .bento-card, .portfolio-card, .why-card, .testimonial-card').forEach(function (el) {
-	el.addEventListener('mouseenter', function () { document.body.classList.add('cursor-hover'); });
-	el.addEventListener('mouseleave', function () { document.body.classList.remove('cursor-hover'); });
-});
 
 // ========== NAVBAR ==========
 var navbar = document.getElementById('navbar');
@@ -72,7 +59,11 @@ var mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', function () {
 	hamburger.classList.toggle('active');
 	mobileMenu.classList.toggle('active');
-	if (mobileMenu.classList.contains('active')) { lenis.stop(); } else { lenis.start(); }
+	if (mobileMenu.classList.contains('active')) {
+		if (lenisInstance) lenisInstance.stop();
+	} else {
+		if (lenisInstance) lenisInstance.start();
+	}
 });
 
 document.querySelectorAll('.mobile-link').forEach(function (link, i) {
@@ -80,7 +71,7 @@ document.querySelectorAll('.mobile-link').forEach(function (link, i) {
 	link.addEventListener('click', function () {
 		hamburger.classList.remove('active');
 		mobileMenu.classList.remove('active');
-		lenis.start();
+		if (lenisInstance) lenisInstance.start();
 	});
 });
 
@@ -114,19 +105,24 @@ function initAnimations() {
 		.to('#heroActions', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
 		.to('#scrollIndicator', { opacity: 1, duration: 0.6 }, '-=0.3');
 
-	// Hero orbs floating
-	gsap.to('.hero-orb-1', { x: 40, y: -30, duration: 6, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-	gsap.to('.hero-orb-2', { x: -30, y: 40, duration: 8, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-	gsap.to('.hero-orb-3', { x: 20, y: -20, duration: 5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+	// Floating cards stagger in
+	gsap.utils.toArray('.hero-float').forEach(function (el, i) {
+		gsap.from(el, { opacity: 0, scale: 0.5, duration: 0.8, delay: 1.2 + i * 0.15, ease: 'back.out(1.7)' });
+	});
+
+	// Blob floating animation
+	gsap.utils.toArray('.blob').forEach(function (blob, i) {
+		gsap.to(blob, {
+			x: (i % 2 === 0) ? 30 : -25,
+			y: (i % 2 === 0) ? -25 : 30,
+			duration: 5 + i, yoyo: true, repeat: -1, ease: 'sine.inOut'
+		});
+	});
 
 	// Hero parallax on scroll
 	gsap.to('.hero-content', {
 		scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-		y: -100, opacity: 0.3
-	});
-	gsap.to('.hero-bg', {
-		scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-		y: 60
+		y: -80, opacity: 0.3
 	});
 
 	// ========== STATS COUNTER ==========
@@ -150,7 +146,7 @@ function initAnimations() {
 	document.querySelectorAll('.section-tag').forEach(function (tag) {
 		gsap.to(tag, {
 			scrollTrigger: { trigger: tag, start: 'top 85%', once: true },
-			opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+			opacity: 1, y: 0, duration: 0.8, ease: 'back.out(1.7)'
 		});
 	});
 
@@ -161,11 +157,11 @@ function initAnimations() {
 		});
 	});
 
-	// ========== BENTO CARDS STAGGER ==========
+	// ========== BENTO CARDS — bouncy stagger ==========
 	gsap.utils.toArray('[data-service]').forEach(function (card, i) {
 		gsap.to(card, {
 			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
-			opacity: 1, y: 0, duration: 0.8, delay: i * 0.1, ease: 'power3.out'
+			opacity: 1, y: 0, duration: 0.7, delay: i * 0.08, ease: 'back.out(1.4)'
 		});
 	});
 
@@ -196,7 +192,7 @@ function initAnimations() {
 	gsap.utils.toArray('[data-why]').forEach(function (card, i) {
 		gsap.to(card, {
 			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
-			opacity: 1, y: 0, duration: 0.8, delay: i * 0.15, ease: 'power3.out'
+			opacity: 1, y: 0, duration: 0.7, delay: i * 0.12, ease: 'back.out(1.4)'
 		});
 	});
 
@@ -204,7 +200,7 @@ function initAnimations() {
 	gsap.utils.toArray('[data-testimonial]').forEach(function (card, i) {
 		gsap.to(card, {
 			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
-			opacity: 1, y: 0, duration: 0.8, delay: i * 0.12, ease: 'power3.out'
+			opacity: 1, y: 0, duration: 0.7, delay: i * 0.1, ease: 'back.out(1.4)'
 		});
 	});
 
@@ -220,11 +216,15 @@ function initAnimations() {
 			var target = document.querySelector(link.getAttribute('href'));
 			if (target) {
 				e.preventDefault();
-				lenis.scrollTo(target, { offset: -40 });
+				if (lenisInstance) {
+					lenisInstance.scrollTo(target, { offset: -40 });
+				} else {
+					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				}
 			}
 		});
 	});
 
-	// Refresh ScrollTrigger
+	// Refresh
 	setTimeout(function () { ScrollTrigger.refresh(); }, 500);
 }
