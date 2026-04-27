@@ -4,14 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description"
-		content="Özmen Media — Instagram, Facebook, WhatsApp yönetimi ve sosyal medya danışmanlık.">
-	<title>Özmen Media — Sosyal Medya Çözümleri</title>
+	<meta name="description" content="Özmen Media — Instagram, Facebook, WhatsApp yönetimi ve profesyonel sosyal medya danışmanlığı.">
+	<title>Özmen Media — Profesyonel Sosyal Medya Çözümleri</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,22 +17,13 @@
 	<!-- PRELOADER -->
 	<div class="preloader" id="preloader">
 		<div class="preloader-inner">
-			<img src="img/mascot.png" alt="" class="preloader-mascot" width="80">
+			<img src="img/mascot.png" alt="Özmen Media Maskot" class="preloader-mascot" width="90">
 			<div class="preloader-logo">özmen<span>media</span></div>
 			<div class="preloader-bar">
 				<div class="preloader-fill" id="preloaderFill"></div>
 			</div>
+			<div class="preloader-subtitle">Markanız hazırlanıyor...</div>
 		</div>
-	</div>
-
-	<!-- FIXED MASCOT (left side, stays on scroll) -->
-	<div class="fixed-mascot" id="fixedMascot">
-		<img src="img/mascot.png" alt="Özmen Media Maskotu" width="220">
-	</div>
-
-	<!-- FIXED ROCKET (right side, hovers in place) -->
-	<div class="fixed-rocket" id="fixedRocket">
-		<img src="img/rocket.png" alt="" width="160">
 	</div>
 
 	<!-- NAVBAR -->
@@ -46,13 +34,10 @@
 				<li><a href="#hizmetler">Hizmetler</a></li>
 				<li><a href="#portfolio">Portfolyo</a></li>
 				<li><a href="#neden-biz">Neden Biz?</a></li>
+				<li><a href="#ekibimiz">Ekibimiz</a></li>
 			</ul>
-			<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank"
-				class="nav-cta">
-				<span>Bize Ulaşın</span>
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-					<path d="M5 12h14M12 5l7 7-7 7" />
-				</svg>
+			<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20bilgi%20almak%20istiyorum." target="_blank" class="nav-cta">
+				<span>İletişime Geçin</span>
 			</a>
 			<button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span></button>
 		</div>
@@ -60,279 +45,221 @@
 
 	<!-- MOBILE MENU -->
 	<div class="mob-menu" id="mobMenu">
-		<div>
+		<div class="mob-inner">
 			<a href="#hizmetler" class="mob-link">Hizmetler</a>
 			<a href="#portfolio" class="mob-link">Portfolyo</a>
 			<a href="#neden-biz" class="mob-link">Neden Biz?</a>
-			<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="mob-link cta">İletişime Geç</a>
+			<a href="#ekibimiz" class="mob-link">Ekibimiz</a>
+			<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="mob-link cta">Bize Ulaşın</a>
 		</div>
 	</div>
 
-	<!-- ==================== HERO ==================== -->
-	<section class="panel hero" id="hero">
-		<div class="bg-blob" style="width:360px;height:360px;top:-8%;right:5%;background:var(--purple-bg);opacity:0.5">
-		</div>
-		<div class="bg-blob" style="width:280px;height:280px;bottom:0;left:2%;background:var(--pink-bg);opacity:0.4">
-		</div>
-		<div class="bg-blob" style="width:200px;height:200px;top:40%;left:55%;background:var(--orange-bg);opacity:0.3">
-		</div>
-
-		<div class="hero-wrap">
-			<div class="hero-text">
-				<div class="hero-badge rv-up">
+	<!-- ==================== SECTION 1: HERO ==================== -->
+	<section class="story-section hero-section" id="hero">
+		<div class="section-inner hero-inner">
+			<div class="hero-left">
+				<div class="hero-badge anim-pop">
 					<span class="badge-dot"></span>
-					<span>Yeni projeler kabul ediliyor</span>
+					<span>Profesyonel Dijital Büyüme</span>
 				</div>
-				<h1 class="rv-up">Sosyal Medyanızı<br><span class="gradient-text">Zirveye Taşıyoruz.</span></h1>
-				<p class="rv-up">Instagram, Facebook ve WhatsApp yönetiminden reklam optimizasyonuna — markanızı dijital
-					dünyada büyütüyoruz.</p>
-				<div class="hero-btns rv-up">
-					<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20sosyal%20medya%20desteği%20hakkında%20bilgi%20almak%20istiyorum."
-						target="_blank" class="btn btn-primary">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-							<path
-								d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-						</svg>
-						<span>WhatsApp ile Ulaşın</span>
+				<h1 class="hero-title">
+					<div class="rev-wrap"><div class="rev-text">Sosyal Medyanızı</div></div>
+					<div class="rev-wrap"><div class="rev-text"><span class="text-purple">Zirveye</span> Taşıyoruz.</div></div>
+				</h1>
+				<p class="hero-desc anim-fade-up">
+					Instagram, Facebook ve WhatsApp yönetiminde kurumsal ve yenilikçi stratejilerle markanızı güçlendiriyoruz. Profesyonel ekibimizle tanışın.
+				</p>
+				<div class="hero-btns anim-fade-up">
+					<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="btn btn-primary btn-bounce">
+						<span>Hemen Başlayın</span>
 					</a>
-					<a href="#portfolio" class="btn btn-outline">
+					<a href="#portfolio" class="btn btn-outline btn-bounce">
 						<span>Çalışmalarımız</span>
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2">
-							<path d="M12 5v14M5 12l7 7 7-7" />
-						</svg>
 					</a>
 				</div>
 			</div>
-			<div class="hero-illust rv-scale">
-				<div class="hero-illust-glow"></div>
-				<img src="img/megaphone.png" alt="Sosyal Medya Pazarlama" width="380" height="380">
-				<!-- Floating micro-badges around illustration -->
-				<div class="float-badge" style="top:10%;right:-20px" id="fb1">
-					<div class="float-badge-icon" style="background:var(--pink-bg);color:#E1306C">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2">
-							<rect x="2" y="2" width="20" height="20" rx="5" />
-							<circle cx="12" cy="12" r="5" />
-						</svg>
-					</div>
-					<span>+2.4K takipçi</span>
+			<div class="hero-right">
+				<div class="hero-illust-wrapper anim-pop">
+					<div class="illust-bg-circle"></div>
+					<img src="img/megaphone.png" alt="Sosyal Medya Yönetimi" class="hero-img floating">
 				</div>
-				<div class="float-badge" style="bottom:20%;left:-30px" id="fb2">
-					<div class="float-badge-icon" style="background:var(--green-bg);color:var(--green)">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2">
-							<polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-						</svg>
+				
+				<!-- Floating Stat Badges -->
+				<div class="float-badge fb-1 anim-pop delay-1">
+					<div class="fb-icon bg-pink text-pink-dark">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
 					</div>
-					<span>%340 büyüme</span>
+					<span>+2.4K Takipçi</span>
 				</div>
-				<div class="float-badge" style="bottom:5%;right:-10px" id="fb3">
-					<div class="float-badge-icon" style="background:var(--blue-bg);color:var(--blue)">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="2">
-							<path
-								d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-						</svg>
+				<div class="float-badge fb-2 anim-pop delay-2">
+					<div class="fb-icon bg-blue text-blue-dark">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20V10M18 20V4M6 20v-4"></path></svg>
 					</div>
-					<span>5K+ beğeni</span>
+					<span>%340 Büyüme</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="scroll-indicator">
+			<div class="scroll-mouse">
+				<div class="scroll-dot"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ==================== SECTION 2: STATS ==================== -->
+	<section class="story-section stats-section" id="stats">
+		<div class="section-inner">
+			<div class="stats-grid">
+				<div class="stat-item anim-fade-up">
+					<div class="stat-num-wrap"><span class="stat-num" data-count="50">0</span><span class="stat-sfx text-pink">+</span></div>
+					<span class="stat-lbl">Mutlu Müşteri</span>
+				</div>
+				<div class="stat-item anim-fade-up delay-1">
+					<div class="stat-num-wrap"><span class="stat-num" data-count="120">0</span><span class="stat-sfx text-blue">+</span></div>
+					<span class="stat-lbl">Tamamlanan Proje</span>
+				</div>
+				<div class="stat-item anim-fade-up delay-2">
+					<div class="stat-num-wrap"><span class="stat-num" data-count="340">0</span><span class="stat-sfx text-green">%</span></div>
+					<span class="stat-lbl">Ortalama Büyüme</span>
+				</div>
+				<div class="stat-item anim-fade-up delay-3">
+					<div class="stat-num-wrap"><span class="stat-num" data-count="7">0</span><span class="stat-sfx text-purple">/24</span></div>
+					<span class="stat-lbl">Teknik Destek</span>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- STATS -->
-	<section class="stats-strip" id="stats">
-		<div class="stats-card rv-up">
-			<div class="stat"><span class="stat-num" data-count="50">0</span><span class="stat-sfx">+</span><span
-					class="stat-lbl">Mutlu Müşteri</span></div>
-			<div class="stat-div"></div>
-			<div class="stat"><span class="stat-num" data-count="120">0</span><span class="stat-sfx">+</span><span
-					class="stat-lbl">Tamamlanan Proje</span></div>
-			<div class="stat-div"></div>
-			<div class="stat"><span class="stat-num" data-count="340">0</span><span class="stat-sfx">%</span><span
-					class="stat-lbl">Ortalama Büyüme</span></div>
-			<div class="stat-div"></div>
-			<div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-sfx">/24</span><span
-					class="stat-lbl">Destek</span></div>
-		</div>
-	</section>
-
-	<!-- ==================== SERVICES ==================== -->
-	<section class="panel services-panel" id="hizmetler">
-		<div class="story-wrap">
-			<div class="story-txt">
-				<span class="tag tag-purple rv-up">HİZMETLER</span>
-				<h2 class="rv-up">Neler <span class="gradient-text">Yapıyoruz?</span></h2>
-				<p class="rv-up">Markanızı büyütmek için uzman ekibimizle birlikte sunduğumuz hizmetler:</p>
-				<div class="svc-pills">
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:linear-gradient(135deg,#F58529,#DD2A7B)"></div>Instagram
-						Yönetimi
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:#1877F2"></div>Facebook Yönetimi
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:#25D366"></div>WhatsApp Business
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:var(--purple)"></div>Reklam Yönetimi
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:var(--blue)"></div>Hesap Güvenliği
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:var(--orange)"></div>Etkileşim Artırma
-					</div>
-					<div class="svc-pill rv-up">
-						<div class="pill-dot" style="background:var(--green)"></div>Stratejik Danışmanlık
-					</div>
-				</div>
-				<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20hizmetleriniz%20hakkında%20bilgi%20almak%20istiyorum."
-					target="_blank" class="btn btn-primary rv-up"><span>Detayları Öğrenin</span></a>
-			</div>
-			<div class="story-img rv-right">
-				<img src="img/phone.png" alt="Sosyal Medya Yönetimi" width="360" height="360">
-			</div>
-		</div>
-	</section>
-
-	<!-- ==================== PORTFOLIO ==================== -->
-	<section class="panel portfolio-panel" id="portfolio">
-		<div class="portfolio-wrap">
-			<span class="tag tag-pink rv-up">PORTFOLYO</span>
-			<h2 class="rv-up">Başarı <span class="gradient-text">Hikâyeleri</span></h2>
-			<div class="p-grid">
-				<article class="p-card rv-up">
-					<div class="p-vis" style="background:linear-gradient(135deg,#FECDD3,#FDE8EF)">
-						<svg style="color:#E1306C" width="36" height="36" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="1.2">
-							<rect x="2" y="2" width="20" height="20" rx="5" />
-							<circle cx="12" cy="12" r="5" />
-							<circle cx="18" cy="6" r="1.5" fill="currentColor" />
-						</svg>
-						<span class="p-plat" style="color:#E1306C">Instagram</span>
-					</div>
-					<div class="p-info">
-						<h3>Bella Güzellik Salonu</h3>
-						<p>3 ayda 2K→15K takipçi, randevu oranı %180 arttı.</p>
-						<div class="p-result"><strong>+%650</strong><span>Büyüme</span></div>
-					</div>
-				</article>
-				<article class="p-card rv-up">
-					<div class="p-vis" style="background:linear-gradient(135deg,#DBEAFE,#EEF2FF)">
-						<svg style="color:#1877F2" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-						</svg>
-						<span class="p-plat" style="color:#1877F2">Facebook Ads</span>
-					</div>
-					<div class="p-info">
-						<h3>Lezzet Durağı Restaurant</h3>
-						<p>Reklam kampanyasıyla aylık sipariş %240 arttı.</p>
-						<div class="p-result"><strong>+%240</strong><span>Sipariş</span></div>
-					</div>
-				</article>
-				<article class="p-card rv-up">
-					<div class="p-vis" style="background:linear-gradient(135deg,#D1FAE5,#ECFDF5)">
-						<svg style="color:#25D366" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-							<path
-								d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-						</svg>
-						<span class="p-plat" style="color:#25D366">WhatsApp</span>
-					</div>
-					<div class="p-info">
-						<h3>Atlas Emlak</h3>
-						<p>Otomatik yanıt ile dönüşüm %320 yükseldi.</p>
-						<div class="p-result"><strong>+%320</strong><span>Dönüşüm</span></div>
-					</div>
-				</article>
-			</div>
-		</div>
-	</section>
-
-	<!-- ==================== WHY US ==================== -->
-	<section class="panel why-panel" id="neden-biz">
-		<div class="story-wrap reverse">
-			<div class="story-txt">
-				<span class="tag tag-orange rv-up">NEDEN BİZ?</span>
-				<h2 class="rv-up">Farkımız <span class="gradient-text">Nedir?</span></h2>
-				<p class="rv-up">Profesyonel yaklaşım, 7/24 destek ve şeffaf çalışma anlayışımızla yanınızdayız.</p>
-				<div class="why-grid" style="margin-top:24px">
-					<div class="w-card rv-up">
-						<div class="w-icon" style="background:var(--purple-bg);color:var(--purple)">
-							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-								stroke-width="1.5">
-								<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-							</svg>
+	<!-- ==================== SECTION 3: SERVICES ==================== -->
+	<section class="story-section services-section bg-alt" id="hizmetler">
+		<div class="section-inner split-layout">
+			<div class="split-text">
+				<div class="tag text-purple bg-purple-light anim-pop">HİZMETLER</div>
+				<h2 class="section-title">
+					<div class="rev-wrap"><div class="rev-text">Markanızı</div></div>
+					<div class="rev-wrap"><div class="rev-text"><span class="text-blue">Büyütüyoruz.</span></div></div>
+				</h2>
+				<p class="section-desc anim-fade-up">Modern dijital stratejilerle etkileşiminizi artırıyor, reklam bütçenizi en verimli şekilde yönetiyoruz.</p>
+				
+				<div class="svc-list">
+					<div class="svc-card anim-slide-right">
+						<div class="svc-icon bg-pink-light text-pink-dark">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" /><circle cx="12" cy="12" r="5" /></svg>
 						</div>
-						<h3>Hızlı Çözüm</h3>
-						<p>Ort. 2 saat içinde geri dönüş.</p>
-						<span class="w-badge" style="background:var(--purple-bg);color:var(--purple)">
-							< 2 saat</span>
-					</div>
-					<div class="w-card rv-up">
-						<div class="w-icon" style="background:var(--green-bg);color:var(--green)">
-							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-								stroke-width="1.5">
-								<circle cx="12" cy="12" r="10" />
-								<polyline points="12 6 12 12 16 14" />
-							</svg>
+						<div class="svc-info">
+							<h3>Instagram & Facebook Yönetimi</h3>
+							<p>Profesyonel içerik üretimi ve hesap optimizasyonu.</p>
 						</div>
-						<h3>7/24 Destek</h3>
-						<p>WhatsApp üzerinden her an.</p>
-						<span class="w-badge" style="background:var(--green-bg);color:var(--green)">Her an</span>
 					</div>
-					<div class="w-card rv-up">
-						<div class="w-icon" style="background:var(--pink-bg);color:var(--pink)">
-							<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-								stroke-width="1.5">
-								<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-								<circle cx="12" cy="12" r="3" />
-							</svg>
+					<div class="svc-card anim-slide-right delay-1">
+						<div class="svc-icon bg-blue-light text-blue-dark">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-8-4v8z"/></svg>
 						</div>
-						<h3>Şeffaf Süreç</h3>
-						<p>Her adımı birlikte takip ederiz.</p>
-						<span class="w-badge" style="background:var(--pink-bg);color:var(--pink)">Şeffaf</span>
+						<div class="svc-info">
+							<h3>Reklam Stratejileri</h3>
+							<p>Hedef kitleye yönelik yüksek dönüşümlü kampanyalar.</p>
+						</div>
+					</div>
+					<div class="svc-card anim-slide-right delay-2">
+						<div class="svc-icon bg-green-light text-green-dark">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+						</div>
+						<div class="svc-info">
+							<h3>WhatsApp Business</h3>
+							<p>Hızlı müşteri dönüşleri için entegre kurulum.</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="story-img rv-left">
-				<img src="img/target.png" alt="Hedef Başarı" width="340" height="340">
+			<div class="split-visual anim-pop">
+				<div class="illust-bg-circle bg-blue-light"></div>
+				<img src="img/phone.png" alt="Sosyal Medya Uygulamaları" class="feature-img floating">
 			</div>
 		</div>
 	</section>
 
-	<!-- ==================== CTA ==================== -->
-	<section class="panel cta-panel" id="iletisim">
-		<div class="cta-content rv-up">
-			<h2>Markanızı Büyütmeye<br>Hazır Mısınız?</h2>
-			<p>Ücretsiz dijital analiz için hemen iletişime geçin.</p>
-			<div class="cta-btns">
-				<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20ücretsiz%20danışma%20hakkında%20bilgi%20almak%20istiyorum."
-					target="_blank" class="btn btn-white">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
-						<path
-							d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-						<path
-							d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-					</svg>
-					<span>Ücretsiz Danışma Al</span>
-				</a>
-				<a href="https://www.instagram.com/justozmen/" target="_blank" class="btn btn-ghost">
-					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-						stroke-width="1.8">
-						<rect x="2" y="2" width="20" height="20" rx="5" />
-						<circle cx="12" cy="12" r="5" />
-						<circle cx="18" cy="6" r="1.5" fill="currentColor" />
-					</svg>
-					<span>Instagram'dan Ulaşın</span>
-				</a>
+	<!-- ==================== SECTION 4: WHY US ==================== -->
+	<section class="story-section why-section" id="neden-biz">
+		<div class="section-inner split-layout reverse">
+			<div class="split-text">
+				<div class="tag text-pink bg-pink-light anim-pop">NEDEN BİZ?</div>
+				<h2 class="section-title">
+					<div class="rev-wrap"><div class="rev-text">Farkımız</div></div>
+					<div class="rev-wrap"><div class="rev-text"><span class="text-pink">Nedir?</span></div></div>
+				</h2>
+				<p class="section-desc anim-fade-up">Güvenilir, şeffaf ve sonuç odaklı çalışma prensiplerimizle diğer ajanslardan ayrılıyoruz.</p>
+				
+				<div class="why-list">
+					<div class="why-item anim-fade-up">
+						<div class="why-icon bg-purple-light text-purple-dark">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+						</div>
+						<div>
+							<h4>Hızlı Aksiyon</h4>
+							<p>Sorunlarınıza maksimum 2 saat içinde yanıt veriyoruz.</p>
+						</div>
+					</div>
+					<div class="why-item anim-fade-up delay-1">
+						<div class="why-icon bg-green-light text-green-dark">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+						</div>
+						<div>
+							<h4>Hesap Güvenliği</h4>
+							<p>Asla risk almayız. Güvenlik ayarlarınızı biz yönetiriz.</p>
+						</div>
+					</div>
+					<div class="why-item anim-fade-up delay-2">
+						<div class="why-icon bg-blue-light text-blue-dark">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+						</div>
+						<div>
+							<h4>Şeffaf Süreç</h4>
+							<p>Yapılan tüm işlemleri sizinle anlık olarak paylaşıyoruz.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="split-visual anim-pop">
+				<div class="illust-bg-circle bg-pink-light"></div>
+				<img src="img/target.png" alt="Hedef ve Başarı" class="feature-img floating-alt">
+			</div>
+		</div>
+	</section>
+
+	<!-- ==================== SECTION 5: TEAM ==================== -->
+	<section class="story-section team-section bg-alt" id="ekibimiz">
+		<div class="section-inner text-center">
+			<div class="tag text-blue bg-blue-light anim-pop mx-auto">EKİBİMİZ</div>
+			<h2 class="section-title center">
+				<div class="rev-wrap"><div class="rev-text">Kreatif <span class="text-blue">Ekibimiz</span></div></div>
+			</h2>
+			<p class="section-desc center anim-fade-up">Arkada yatan başarılı stratejilerin mimarlarıyla tanışın.</p>
+			
+			<div class="team-visual-wrap anim-pop mt-5">
+				<div class="team-photo-container">
+					<img src="img/group.jpg" alt="Özmen Media Ekibi" class="team-img">
+					<div class="team-overlay">
+						<span class="overlay-text">Birlikte Başarıyoruz</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ==================== SECTION 6: CTA ==================== -->
+	<section class="story-section cta-section" id="iletisim">
+		<div class="section-inner">
+			<div class="cta-box anim-fade-up">
+				<div class="cta-content">
+					<h2>Markanızı Büyütmeye<br>Hazır mısınız?</h2>
+					<p>Ücretsiz analiz ve danışmanlık için hemen WhatsApp'tan bize ulaşın.</p>
+					<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="btn btn-white btn-bounce">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+						<span>Hemen Mesaj Atın</span>
+					</a>
+				</div>
+				<img src="img/mascot.png" alt="Özmen Media Maskot" class="cta-mascot anim-pop delay-2">
 			</div>
 		</div>
 	</section>
@@ -343,11 +270,11 @@
 			<div class="footer-top">
 				<div class="footer-brand">
 					<h3 class="nav-logo">özmen<span>media</span></h3>
-					<p>Dijital dünyada markanızı büyüten yaratıcı çözüm ortağınız.</p>
+					<p>Profesyonel sosyal medya danışmanlığı ile markanızı geleceğe taşıyoruz.</p>
 				</div>
-				<div class="footer-cols">
+				<div class="footer-links">
 					<div class="f-col">
-						<h4>Hızlı Erişim</h4>
+						<h4>Hızlı Menü</h4>
 						<a href="#hizmetler">Hizmetler</a>
 						<a href="#portfolio">Portfolyo</a>
 						<a href="#neden-biz">Neden Biz?</a>
@@ -355,57 +282,22 @@
 					<div class="f-col">
 						<h4>İletişim</h4>
 						<a href="mailto:info@ozmenmedia.com">info@ozmenmedia.com</a>
-						<a href="tel:+905XXXXXXXXX">+90 5XX XXX XX XX</a>
-						<a href="#">Türkiye</a>
+						<a href="https://wa.me/905XXXXXXXXX" target="_blank">+90 5XX XXX XX XX</a>
 					</div>
 				</div>
 			</div>
 			<div class="footer-bot">
 				<span>&copy; 2026 Özmen Media. Tüm hakları saklıdır.</span>
-				<div class="f-socials">
-					<a href="https://www.instagram.com/justozmen/" target="_blank" aria-label="Instagram">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-							stroke-width="1.8">
-							<rect x="2" y="2" width="20" height="20" rx="5" />
-							<circle cx="12" cy="12" r="5" />
-							<circle cx="18" cy="6" r="1.5" fill="currentColor" />
-						</svg>
-					</a>
-					<a href="#" aria-label="Facebook">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-						</svg>
-					</a>
-					<a href="https://wa.me/905XXXXXXXXX" target="_blank" aria-label="WhatsApp">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-							<path
-								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-							<path
-								d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-						</svg>
-					</a>
-				</div>
 			</div>
 		</div>
 	</footer>
 
 	<!-- WA FAB -->
 	<div class="wa-fab" id="waFab">
-		<div class="wa-menu" id="waMenu">
-			<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Instagram%20desteği%20istiyorum." target="_blank"
-				class="wa-item">Instagram Destek</a>
-			<a href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Facebook%20desteği%20istiyorum." target="_blank"
-				class="wa-item">Facebook Destek</a>
-			<a href="https://wa.me/905XXXXXXXXX?text=Acil%20hesap%20sorunu!" target="_blank" class="wa-item urgent">Acil
-				Destek</a>
-		</div>
-		<button class="wa-btn" id="waBtn" aria-label="WhatsApp">
-			<svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-				<path
-					d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-				<path
-					d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
+		<button class="wa-btn" aria-label="WhatsApp" onclick="window.open('https://wa.me/905XXXXXXXXX', '_blank')">
+			<svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+				<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+				<path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.914.914l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
 			</svg>
 		</button>
 	</div>
