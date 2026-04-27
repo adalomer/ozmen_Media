@@ -20,25 +20,131 @@ var preInt = setInterval(function () {
 }, 60);
 document.body.style.overflow = 'hidden';
 
-/* --- NAVBAR & MOB MENU --- */
-var nav = document.getElementById('navbar');
-window.addEventListener('scroll', function () {
-	nav.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
+/* --- PILLNAV --- */
+function initPillNav() {
+	var ease = 'power3.easeOut';
+	var circles = document.querySelectorAll('.hover-circle');
+	var tlMap = new Map();
+	var activeTweens = new Map();
 
-var ham = document.getElementById('hamburger');
-var mob = document.getElementById('mobMenu');
-ham.addEventListener('click', function () { 
-	ham.classList.toggle('active'); 
-	mob.classList.toggle('active'); 
-});
-document.querySelectorAll('.mob-link').forEach(function (l, i) {
-	l.style.transitionDelay = (i * 0.08) + 's';
-	l.addEventListener('click', function () { 
-		ham.classList.remove('active'); 
-		mob.classList.remove('active'); 
+	function layout() {
+		circles.forEach(function (circle, i) {
+			var pill = circle.parentElement;
+			if (!pill) return;
+
+			var rect = pill.getBoundingClientRect();
+			var w = rect.width, h = rect.height;
+			var R = ((w * w) / 4 + h * h) / (2 * h);
+			var D = Math.ceil(2 * R) + 2;
+			var delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
+			var originY = D - delta;
+
+			circle.style.width = D + 'px';
+			circle.style.height = D + 'px';
+			circle.style.bottom = -delta + 'px';
+
+			gsap.set(circle, {
+				xPercent: -50,
+				scale: 0,
+				transformOrigin: '50% ' + originY + 'px'
+			});
+
+			var label = pill.querySelector('.pill-label');
+			var white = pill.querySelector('.pill-label-hover');
+
+			if (label) gsap.set(label, { y: 0 });
+			if (white) gsap.set(white, { y: h + 12, opacity: 0 });
+
+			var tl = tlMap.get(circle);
+			if (tl) tl.kill();
+
+			tl = gsap.timeline({ paused: true });
+			tl.to(circle, { scale: 1.2, xPercent: -50, duration: 0.5, ease: ease, overwrite: 'auto' }, 0);
+
+			if (label) {
+				tl.to(label, { y: -(h + 8), duration: 0.5, ease: ease, overwrite: 'auto' }, 0);
+			}
+
+			if (white) {
+				gsap.set(white, { y: Math.ceil(h + 10), opacity: 0 });
+				tl.to(white, { y: 0, opacity: 1, duration: 0.5, ease: ease, overwrite: 'auto' }, 0);
+			}
+
+			tlMap.set(circle, tl);
+
+			// Event listeners
+			pill.onmouseenter = function () {
+				var anim = tlMap.get(circle);
+				if (!anim) return;
+				if (activeTweens.get(circle)) activeTweens.get(circle).kill();
+				activeTweens.set(circle, anim.tweenTo(anim.duration(), { duration: 0.3, ease: ease, overwrite: 'auto' }));
+			};
+
+			pill.onmouseleave = function () {
+				var anim = tlMap.get(circle);
+				if (!anim) return;
+				if (activeTweens.get(circle)) activeTweens.get(circle).kill();
+				activeTweens.set(circle, anim.tweenTo(0, { duration: 0.2, ease: ease, overwrite: 'auto' }));
+			};
+		});
+	}
+
+	layout();
+	window.addEventListener('resize', layout);
+	if (document.fonts && document.fonts.ready) {
+		document.fonts.ready.then(layout).catch(function () {});
+	}
+
+	// Logo Spin
+	var logoImg = document.querySelector('#pillLogo img');
+	var logoTween;
+	document.getElementById('pillLogo').onmouseenter = function () {
+		if (logoTween) logoTween.kill();
+		gsap.set(logoImg, { rotate: 0 });
+		logoTween = gsap.to(logoImg, { rotate: 360, duration: 0.4, ease: ease, overwrite: 'auto' });
+	};
+
+	// Mobile Menu
+	var isMobileOpen = false;
+	var ham = document.getElementById('pillHamburger');
+	var menu = document.getElementById('pillMobileMenu');
+	gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1 });
+
+	function toggleMenu() {
+		isMobileOpen = !isMobileOpen;
+		if (ham) {
+			var lines = ham.querySelectorAll('.hamburger-line');
+			if (isMobileOpen) {
+				gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease: ease });
+				gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease: ease });
+			} else {
+				gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease: ease });
+				gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease: ease });
+			}
+		}
+
+		if (isMobileOpen) {
+			gsap.set(menu, { visibility: 'visible' });
+			gsap.fromTo(menu,
+				{ opacity: 0, y: 10 },
+				{ opacity: 1, y: 0, duration: 0.3, ease: ease, transformOrigin: 'top center' }
+			);
+		} else {
+			gsap.to(menu, {
+				opacity: 0, y: 10, duration: 0.2, ease: ease,
+				onComplete: function () { gsap.set(menu, { visibility: 'hidden' }); }
+			});
+		}
+	}
+
+	if (ham) ham.onclick = toggleMenu;
+
+	document.querySelectorAll('.mobile-menu-link').forEach(function (l) {
+		l.onclick = function () { if (isMobileOpen) toggleMenu(); };
 	});
-});
+}
+
+initPillNav();
 
 /* ==========================
    MAIN ANIMATIONS

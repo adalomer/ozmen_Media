@@ -25,31 +25,77 @@
 		</div>
 	</div>
 
-	<!-- NAVBAR -->
-	<nav class="navbar" id="navbar">
-		<div class="nav-inner">
-			<a href="#" class="nav-logo">özmen<span>media</span></a>
-			<ul class="nav-links">
-				<li><a href="#hizmetler">Hizmetler</a></li>
-				<li><a href="#portfolio">Portfolyo</a></li>
-				<li><a href="#neden-biz">Neden Biz?</a></li>
-				<li><a href="#ekibimiz">Ekibimiz</a></li>
-			</ul>
-			<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="nav-cta btn-slush">
-				<span>İletişime Geçin</span>
+	<!-- PILLNAV CONTAINER -->
+	<div class="pill-nav-container">
+		<nav class="pill-nav" aria-label="Primary" id="pillNav" style="--base: #202124; --pill-bg: #FFFFFF; --hover-text: #FFFFFF; --pill-text: #202124;">
+			<a class="pill-logo" href="#" aria-label="Home" id="pillLogo">
+				<img src="img/mascot.png" alt="Özmen Media Logo">
 			</a>
-			<button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span></button>
-		</div>
-	</nav>
 
-	<!-- MOBILE MENU -->
-	<div class="mob-menu" id="mobMenu">
-		<div class="mob-inner">
-			<a href="#hizmetler" class="mob-link">Hizmetler</a>
-			<a href="#portfolio" class="mob-link">Portfolyo</a>
-			<a href="#neden-biz" class="mob-link">Neden Biz?</a>
-			<a href="#ekibimiz" class="mob-link">Ekibimiz</a>
-			<a href="https://wa.me/905XXXXXXXXX" target="_blank" class="mob-link cta">Bize Ulaşın</a>
+			<div class="pill-nav-items desktop-only" id="pillNavItems">
+				<ul class="pill-list" role="menubar">
+					<li role="none">
+						<a role="menuitem" href="#hizmetler" class="pill">
+							<span class="hover-circle" aria-hidden="true"></span>
+							<span class="label-stack">
+								<span class="pill-label">Hizmetler</span>
+								<span class="pill-label-hover" aria-hidden="true">Hizmetler</span>
+							</span>
+						</a>
+					</li>
+					<li role="none">
+						<a role="menuitem" href="#portfolio" class="pill">
+							<span class="hover-circle" aria-hidden="true"></span>
+							<span class="label-stack">
+								<span class="pill-label">Portfolyo</span>
+								<span class="pill-label-hover" aria-hidden="true">Portfolyo</span>
+							</span>
+						</a>
+					</li>
+					<li role="none">
+						<a role="menuitem" href="#neden-biz" class="pill">
+							<span class="hover-circle" aria-hidden="true"></span>
+							<span class="label-stack">
+								<span class="pill-label">Neden Biz?</span>
+								<span class="pill-label-hover" aria-hidden="true">Neden Biz?</span>
+							</span>
+						</a>
+					</li>
+					<li role="none">
+						<a role="menuitem" href="#ekibimiz" class="pill">
+							<span class="hover-circle" aria-hidden="true"></span>
+							<span class="label-stack">
+								<span class="pill-label">Ekibimiz</span>
+								<span class="pill-label-hover" aria-hidden="true">Ekibimiz</span>
+							</span>
+						</a>
+					</li>
+					<li role="none">
+						<a role="menuitem" href="https://wa.me/905XXXXXXXXX" target="_blank" class="pill" style="--base: var(--blue);">
+							<span class="hover-circle" aria-hidden="true"></span>
+							<span class="label-stack">
+								<span class="pill-label text-red">İletişim</span>
+								<span class="pill-label-hover" aria-hidden="true">İletişim</span>
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<button class="mobile-menu-button mobile-only" id="pillHamburger" aria-label="Toggle menu">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</button>
+		</nav>
+
+		<div class="mobile-menu-popover mobile-only" id="pillMobileMenu" style="--base: #202124; --pill-bg: #FFFFFF; --hover-text: #FFFFFF; --pill-text: #202124;">
+			<ul class="mobile-menu-list">
+				<li><a href="#hizmetler" class="mobile-menu-link">Hizmetler</a></li>
+				<li><a href="#portfolio" class="mobile-menu-link">Portfolyo</a></li>
+				<li><a href="#neden-biz" class="mobile-menu-link">Neden Biz?</a></li>
+				<li><a href="#ekibimiz" class="mobile-menu-link">Ekibimiz</a></li>
+				<li><a href="https://wa.me/905XXXXXXXXX" target="_blank" class="mobile-menu-link" style="color:var(--red);">İletişim</a></li>
+			</ul>
 		</div>
 	</div>
 
