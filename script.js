@@ -1,41 +1,24 @@
 /* Özmen Media — Scroll-Driven Animations
-   GSAP + ScrollTrigger (CDN)
-   Lenis optional — fallback to native scroll
+   GSAP + ScrollTrigger (CDN) — Native scroll only
 */
 
 gsap.registerPlugin(ScrollTrigger);
-
-// ========== SMOOTH SCROLL (with fallback) ==========
-var lenisInstance = null;
-try {
-	if (typeof Lenis !== 'undefined') {
-		lenisInstance = new Lenis({ duration: 1.2, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
-		function raf(time) { lenisInstance.raf(time); requestAnimationFrame(raf); }
-		requestAnimationFrame(raf);
-		lenisInstance.on('scroll', ScrollTrigger.update);
-		gsap.ticker.add(function (time) { lenisInstance.raf(time * 1000); });
-		gsap.ticker.lagSmoothing(0);
-	}
-} catch (e) {
-	console.log('Lenis not loaded, using native scroll');
-	lenisInstance = null;
-}
 
 // ========== PRELOADER ==========
 var preloader = document.getElementById('preloader');
 var progress = document.getElementById('preloaderProgress');
 var loaded = 0;
 var loadInterval = setInterval(function () {
-	loaded += Math.random() * 25 + 5;
+	loaded += Math.random() * 30 + 10;
 	if (loaded >= 100) { loaded = 100; clearInterval(loadInterval); }
 	progress.style.width = loaded + '%';
 	if (loaded >= 100) {
 		setTimeout(function () {
 			preloader.classList.add('done');
 			initAnimations();
-		}, 400);
+		}, 300);
 	}
-}, 150);
+}, 120);
 
 // ========== NAVBAR ==========
 var navbar = document.getElementById('navbar');
@@ -59,11 +42,6 @@ var mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', function () {
 	hamburger.classList.toggle('active');
 	mobileMenu.classList.toggle('active');
-	if (mobileMenu.classList.contains('active')) {
-		if (lenisInstance) lenisInstance.stop();
-	} else {
-		if (lenisInstance) lenisInstance.start();
-	}
 });
 
 document.querySelectorAll('.mobile-link').forEach(function (link, i) {
@@ -71,7 +49,6 @@ document.querySelectorAll('.mobile-link').forEach(function (link, i) {
 	link.addEventListener('click', function () {
 		hamburger.classList.remove('active');
 		mobileMenu.classList.remove('active');
-		if (lenisInstance) lenisInstance.start();
 	});
 });
 
@@ -105,12 +82,12 @@ function initAnimations() {
 		.to('#heroActions', { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
 		.to('#scrollIndicator', { opacity: 1, duration: 0.6 }, '-=0.3');
 
-	// Floating cards stagger in
+	// Floating cards bounce in
 	gsap.utils.toArray('.hero-float').forEach(function (el, i) {
 		gsap.from(el, { opacity: 0, scale: 0.5, duration: 0.8, delay: 1.2 + i * 0.15, ease: 'back.out(1.7)' });
 	});
 
-	// Blob floating animation
+	// Blob gentle float
 	gsap.utils.toArray('.blob').forEach(function (blob, i) {
 		gsap.to(blob, {
 			x: (i % 2 === 0) ? 30 : -25,
@@ -119,7 +96,7 @@ function initAnimations() {
 		});
 	});
 
-	// Hero parallax on scroll
+	// Hero parallax
 	gsap.to('.hero-content', {
 		scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
 		y: -80, opacity: 0.3
@@ -157,7 +134,7 @@ function initAnimations() {
 		});
 	});
 
-	// ========== BENTO CARDS — bouncy stagger ==========
+	// ========== BENTO CARDS ==========
 	gsap.utils.toArray('[data-service]').forEach(function (card, i) {
 		gsap.to(card, {
 			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
@@ -167,9 +144,7 @@ function initAnimations() {
 
 	// ========== PORTFOLIO HORIZONTAL SCROLL ==========
 	var track = document.getElementById('portfolioTrack');
-	var wrapper = document.getElementById('portfolioWrapper');
-
-	if (track && wrapper) {
+	if (track) {
 		var trackWidth = track.scrollWidth;
 		var viewWidth = window.innerWidth;
 
@@ -188,7 +163,7 @@ function initAnimations() {
 		});
 	}
 
-	// ========== WHY US CARDS ==========
+	// ========== WHY US ==========
 	gsap.utils.toArray('[data-why]').forEach(function (card, i) {
 		gsap.to(card, {
 			scrollTrigger: { trigger: card, start: 'top 88%', once: true },
@@ -216,15 +191,10 @@ function initAnimations() {
 			var target = document.querySelector(link.getAttribute('href'));
 			if (target) {
 				e.preventDefault();
-				if (lenisInstance) {
-					lenisInstance.scrollTo(target, { offset: -40 });
-				} else {
-					target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				}
+				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 			}
 		});
 	});
 
-	// Refresh
-	setTimeout(function () { ScrollTrigger.refresh(); }, 500);
+	setTimeout(function () { ScrollTrigger.refresh(); }, 300);
 }
