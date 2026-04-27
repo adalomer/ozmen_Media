@@ -211,12 +211,214 @@ function initScrollFloat() {
 	});
 }
 
+/* --- RIBBONS (ogl WebGL) --- */
+function initRibbons() {
+	var container = document.getElementById('ribbons-container');
+	if (!container || !window.ogl) return;
+
+	var Renderer = window.ogl.Renderer;
+	var Transform = window.ogl.Transform;
+	var Vec3 = window.ogl.Vec3;
+	var Color = window.ogl.Color;
+	var Polyline = window.ogl.Polyline;
+
+	var colors = ['#1A73E8', '#EA4335', '#F4B400', '#1558D6', '#C5221F'];
+	var baseSpring = 0.03;
+	var baseFriction = 0.9;
+	var baseThickness = 30;
+	var offsetFactor = 0.05;
+	var maxAge = 500;
+	var pointCount = 50;
+	var speedMultiplier = 0.6;
+	var enableFade = false;
+	var enableShaderEffect = true;
+	var effectAmplitude = 2;
+
+	var renderer = new Renderer({ dpr: window.devicePixelRatio || 2, alpha: true });
+	var gl = renderer.gl;
+	gl.clearColor(0, 0, 0, 0);
+
+	gl.canvas.style.position = 'absolute';
+	gl.canvas.style.top = '0';
+	gl.canvas.style.left = '0';
+	gl.canvas.style.width = '100%';
+	gl.canvas.style.height = '100%';
+	container.appendChild(gl.canvas);
+
+	var scene = new Transform();
+	var lines = [];
+
+	var vertex = `
+	  precision highp float;
+	  attribute vec3 position;
+	  attribute vec3 next;
+	  attribute vec3 prev;
+	  attribute vec2 uv;
+	  attribute float side;
+	  uniform vec2 uResolution;
+	  uniform float uDPR;
+	  uniform float uThickness;
+	  uniform float uTime;
+	  uniform float uEnableShaderEffect;
+	  uniform float uEffectAmplitude;
+	  varying vec2 vUV;
+	  vec4 getPosition() {
+		  vec4 current = vec4(position, 1.0);
+		  vec2 aspect = vec2(uResolution.x / uResolution.y, 1.0);
+		  vec2 nextScreen = next.xy * aspect;
+		  vec2 prevScreen = prev.xy * aspect;
+		  vec2 tangent = normalize(nextScreen - prevScreen);
+		  vec2 normal = vec2(-tangent.y, tangent.x);
+		  normal /= aspect;
+		  normal *= mix(1.0, 0.1, pow(abs(uv.y - 0.5) * 2.0, 2.0));
+		  float dist = length(nextScreen - prevScreen);
+		  normal *= smoothstep(0.0, 0.02, dist);
+		  float pixelWidthRatio = 1.0 / (uResolution.y / uDPR);
+		  float pixelWidth = current.w * pixelWidthRatio;
+		  normal *= pixelWidth * uThickness;
+		  current.xy -= normal * side;
+		  if(uEnableShaderEffect > 0.5) {
+			current.xy += normal * sin(uTime + current.x * 10.0) * uEffectAmplitude;
+		  }
+		  return current;
+	  }
+	  void main() {
+		  vUV = uv;
+		  gl_Position = getPosition();
+	  }
+	`;
+
+	var fragment = `
+	  precision highp float;
+	  uniform vec3 uColor;
+	  uniform float uOpacity;
+	  uniform float uEnableFade;
+	  varying vec2 vUV;
+	  void main() {
+		  float fadeFactor = 1.0;
+		  if(uEnableFade > 0.5) {
+			  fadeFactor = 1.0 - smoothstep(0.0, 1.0, vUV.y);
+		  }
+		  gl_FragColor = vec4(uColor, uOpacity * fadeFactor);
+	  }
+	`;
+
+	function resize() {
+	  var width = container.clientWidth;
+	  var height = container.clientHeight;
+	  renderer.setSize(width, height);
+	  lines.forEach(function(line) { line.polyline.resize(); });
+	}
+	window.addEventListener('resize', resize);
+
+	var center = (colors.length - 1) / 2;
+	colors.forEach(function(color, index) {
+	  var spring = baseSpring + (Math.random() - 0.5) * 0.05;
+	  var friction = baseFriction + (Math.random() - 0.5) * 0.05;
+	  var thickness = baseThickness + (Math.random() - 0.5) * 3;
+	  var mouseOffset = new Vec3(
+		(index - center) * offsetFactor + (Math.random() - 0.5) * 0.01,
+		(Math.random() - 0.5) * 0.1,
+		0
+	  );
+
+	  var line = {
+		spring: spring,
+		friction: friction,
+		mouseVelocity: new Vec3(),
+		mouseOffset: mouseOffset
+	  };
+
+	  var points = [];
+	  for (var i = 0; i < pointCount; i++) {
+		points.push(new Vec3());
+	  }
+	  line.points = points;
+
+	  line.polyline = new Polyline(gl, {
+		points: points,
+		vertex: vertex,
+		fragment: fragment,
+		uniforms: {
+		  uColor: { value: new Color(color) },
+		  uThickness: { value: thickness },
+		  uOpacity: { value: 1.0 },
+		  uTime: { value: 0.0 },
+		  uEnableShaderEffect: { value: enableShaderEffect ? 1.0 : 0.0 },
+		  uEffectAmplitude: { value: effectAmplitude },
+		  uEnableFade: { value: enableFade ? 1.0 : 0.0 }
+		}
+	  });
+	  line.polyline.mesh.setParent(scene);
+	  lines.push(line);
+	});
+
+	resize();
+
+	var mouse = new Vec3();
+	function updateMouse(e) {
+	  var x, y;
+	  var rect = container.getBoundingClientRect();
+	  if (e.changedTouches && e.changedTouches.length) {
+		x = e.changedTouches[0].clientX - rect.left;
+		y = e.changedTouches[0].clientY - rect.top;
+	  } else {
+		x = e.clientX - rect.left;
+		y = e.clientY - rect.top;
+	  }
+	  var width = container.clientWidth;
+	  var height = container.clientHeight;
+	  mouse.set((x / width) * 2 - 1, (y / height) * -2 + 1, 0);
+	}
+	window.addEventListener('mousemove', updateMouse);
+	window.addEventListener('touchstart', updateMouse, {passive: true});
+	window.addEventListener('touchmove', updateMouse, {passive: true});
+
+	var tmp = new Vec3();
+	var lastTime = performance.now();
+	
+	function update() {
+	  requestAnimationFrame(update);
+	  var currentTime = performance.now();
+	  var dt = currentTime - lastTime;
+	  lastTime = currentTime;
+
+	  lines.forEach(function(line) {
+		tmp.copy(mouse).add(line.mouseOffset).sub(line.points[0]).multiply(line.spring);
+		line.mouseVelocity.add(tmp).multiply(line.friction);
+		line.points[0].add(line.mouseVelocity);
+
+		for (var i = 1; i < line.points.length; i++) {
+		  if (maxAge > 0) {
+			var segmentDelay = maxAge / (line.points.length - 1);
+			var alpha = Math.min(1, (dt * speedMultiplier) / segmentDelay);
+			line.points[i].lerp(line.points[i - 1], alpha);
+		  } else {
+			line.points[i].lerp(line.points[i - 1], 0.9);
+		  }
+		}
+		if (line.polyline.mesh.program.uniforms.uTime) {
+		  line.polyline.mesh.program.uniforms.uTime.value = currentTime * 0.001;
+		}
+		line.polyline.updateGeometry();
+	  });
+
+	  renderer.render({ scene: scene });
+	}
+	update();
+}
+
 /* ==========================
    MAIN ANIMATIONS
    ========================== */
 function startAnimations() {
 
 	initScrollFloat();
+	if (window.ogl) { 
+		initRibbons(); 
+	} else { 
+		window.addEventListener('ogl-ready', initRibbons);
+	}
 
 	/* ========== HERO ENTRANCE ========== */
 	// Bouncy Slush style entrance
@@ -227,8 +429,7 @@ function startAnimations() {
 		.to('.hero-btns', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
 		.to('.hero-illust-wrapper', { opacity: 1, scale: 1, duration: 1, ease: 'elastic.out(1, 0.6)' }, '-=0.7')
 		.to('.fb-1', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.6')
-		.to('.fb-2', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.4')
-		.to('.scroll-indicator', { opacity: 1, duration: 0.5, ease: 'none' }, '-=0.2');
+		.to('.fb-2', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.4');
 
 	/* ========== HERO FADE OUT ON SCROLL ========== */
 	gsap.to('.hero-fade-elem', {
