@@ -1,5 +1,5 @@
 /* ===============================================
-   ÖZMEN MEDIA — PLAYFUL & PROFESSIONAL GSAP ANIMATIONS
+   ÖZMEN MEDIA — SLUSH.APP STYLE GSAP ANIMATIONS
    =============================================== */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -8,7 +8,7 @@ var pre = document.getElementById('preloader');
 var fill = document.getElementById('preloaderFill');
 var loaded = 0;
 var preInt = setInterval(function () {
-	loaded += Math.random() * 15 + 5;
+	loaded += Math.random() * 20 + 10;
 	if (loaded >= 100) { loaded = 100; clearInterval(preInt); }
 	fill.style.width = loaded + '%';
 	
@@ -16,8 +16,8 @@ var preInt = setInterval(function () {
 		pre.classList.add('done');
 		document.body.style.overflow = '';
 		startAnimations();
-	}, 500);
-}, 80);
+	}, 400);
+}, 60);
 document.body.style.overflow = 'hidden';
 
 /* --- NAVBAR & MOB MENU --- */
@@ -46,16 +46,60 @@ document.querySelectorAll('.mob-link').forEach(function (l, i) {
 function startAnimations() {
 
 	/* ========== HERO ENTRANCE ========== */
-	var heroTl = gsap.timeline({ defaults: { ease: 'back.out(1.5)' } });
+	// Bouncy Slush style entrance
+	var heroTl = gsap.timeline({ defaults: { ease: 'back.out(1.7)' } });
 	
 	heroTl
-		.to('.hero-badge', { opacity: 1, scale: 1, duration: 0.8 })
-		.to('.hero-title .rev-text', { y: '0%', duration: 1, stagger: 0.1, ease: 'power4.out' }, '-=0.5')
-		.to('.hero-desc', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-		.to('.hero-btns', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
-		.to('.hero-illust-wrapper', { opacity: 1, scale: 1, duration: 1.2, ease: 'elastic.out(1, 0.5)' }, '-=0.8')
-		.to('.fb-1', { opacity: 1, scale: 1, duration: 0.8 }, '-=0.8')
-		.to('.fb-2', { opacity: 1, scale: 1, duration: 0.8 }, '-=0.6');
+		.to('.hero-badge', { opacity: 1, scale: 1, duration: 0.7 })
+		.to('.hero-title .rev-text', { y: '0%', duration: 0.8, stagger: 0.1, ease: 'power4.out' }, '-=0.4')
+		.to('.hero-desc', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
+		.to('.hero-btns', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
+		.to('.hero-illust-wrapper', { opacity: 1, scale: 1, duration: 1, ease: 'elastic.out(1, 0.6)' }, '-=0.7')
+		.to('.fb-1', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.6')
+		.to('.fb-2', { opacity: 1, scale: 1, duration: 0.6 }, '-=0.4')
+		.to('.scroll-indicator', { opacity: 1, duration: 0.5, ease: 'none' }, '-=0.2');
+
+	/* ========== HERO FADE OUT ON SCROLL ========== */
+	// The user requested: "üst taraftaki sabit sıçrama sayfaları aşşağa kaydırıken kaansa daha iyi olabilir"
+	gsap.to('.hero-fade-elem', {
+		scrollTrigger: {
+			trigger: '.hero-section',
+			start: 'top top',
+			end: 'bottom top',
+			scrub: true
+		},
+		y: -100,
+		opacity: 0,
+		stagger: 0.1
+	});
+
+	/* ========== FLOATING GRAFFITI ========== */
+	// Graffiti comes in from sides and stays sticky/parallax
+	gsap.to('.graffiti-left', {
+		scrollTrigger: {
+			trigger: 'body',
+			start: '200px top',
+			end: '1000px top',
+			scrub: 1
+		},
+		opacity: 1,
+		x: 0,
+		rotation: 5,
+		y: 200
+	});
+
+	gsap.to('.graffiti-right', {
+		scrollTrigger: {
+			trigger: 'body',
+			start: '400px top',
+			end: '1400px top',
+			scrub: 1
+		},
+		opacity: 1,
+		x: 0,
+		rotation: -5,
+		y: 300
+	});
 
 	/* ========== SCROLL REVEALS ========== */
 	var sections = gsap.utils.toArray('.story-section:not(#hero)');
@@ -64,32 +108,28 @@ function startAnimations() {
 		var tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: sec,
-				start: 'top 80%',
-				toggleActions: 'play none none none' // Play once playfully
+				start: 'top 75%',
+				toggleActions: 'play none none none' // Play once, bouncy
 			}
 		});
 
-		// Tags & Titles
-		var tags = sec.querySelectorAll('.tag');
-		if(tags.length) tl.to(tags, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.5)' });
+		var tags = sec.querySelectorAll('.tag-slush');
+		if(tags.length) tl.to(tags, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' });
 
 		var revTexts = sec.querySelectorAll('.rev-text');
-		if(revTexts.length) tl.to(revTexts, { y: '0%', duration: 0.8, stagger: 0.1, ease: 'power3.out' }, '-=0.4');
+		if(revTexts.length) tl.to(revTexts, { y: '0%', duration: 0.7, stagger: 0.1, ease: 'power3.out' }, '-=0.3');
 		
 		var desc = sec.querySelectorAll('.section-desc');
-		if(desc.length) tl.to(desc, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4');
+		if(desc.length) tl.to(desc, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
 
-		// Staggered pop animations (icons, cards, images)
 		var pops = sec.querySelectorAll('.anim-pop');
-		if(pops.length) tl.to(pops, { opacity: 1, scale: 1, duration: 0.8, stagger: 0.15, ease: 'back.out(1.5)' }, '-=0.4');
+		if(pops.length) tl.to(pops, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.3');
 
-		// Slide right elements (like service cards)
 		var slides = sec.querySelectorAll('.anim-slide-right');
-		if(slides.length) tl.to(slides, { opacity: 1, x: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, '-=0.6');
+		if(slides.length) tl.to(slides, { opacity: 1, x: 0, duration: 0.7, stagger: 0.15, ease: 'back.out(1.2)' }, '-=0.5');
 		
-		// General fade ups
 		var fades = sec.querySelectorAll('.anim-fade-up');
-		if(fades.length) tl.to(fades, { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' }, '-=0.6');
+		if(fades.length) tl.to(fades, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, '-=0.5');
 	});
 
 	/* ========== STATS COUNTER ========== */
@@ -102,7 +142,7 @@ function startAnimations() {
 			onEnter: function () {
 				gsap.to(el, {
 					innerText: t, 
-					duration: 2.5, 
+					duration: 2, 
 					snap: { innerText: 1 }, 
 					ease: 'power2.out',
 					modifiers: { innerText: function (v) { return Math.round(v); } }
@@ -119,7 +159,7 @@ function startAnimations() {
 				e.preventDefault();
 				gsap.to(window, {
 					scrollTo: { y: target, offsetY: 70 },
-					duration: 1.2, 
+					duration: 1, 
 					ease: 'power3.inOut'
 				});
 			}
