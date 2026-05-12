@@ -1,3 +1,3 @@
-# -zmen_Media
+# özmen_Media
 
-https://olcayofc.com/
+örnek site ->  https://olcayofc.com/
