@@ -152,16 +152,29 @@ function wrapCharacters(node) {
 		var text = node.nodeValue;
 		if (!text.trim()) return;
 		var fragment = document.createDocumentFragment();
-		for (var i = 0; i < text.length; i++) {
-			var char = text[i];
-			var span = document.createElement('span');
-			span.className = 'char';
-			span.textContent = char === ' ' ? '\u00A0' : char;
-			fragment.appendChild(span);
-		}
+		var words = text.split(/(\s+)/);
+		words.forEach(function(word) {
+			if (!word) return;
+			if (word.trim() === '') {
+				fragment.appendChild(document.createTextNode(word));
+			} else {
+				var wordSpan = document.createElement('span');
+				wordSpan.className = 'word';
+				wordSpan.style.display = 'inline-block';
+				wordSpan.style.whiteSpace = 'nowrap';
+				for (var i = 0; i < word.length; i++) {
+					var charSpan = document.createElement('span');
+					charSpan.className = 'char';
+					charSpan.style.display = 'inline-block';
+					charSpan.textContent = word[i];
+					wordSpan.appendChild(charSpan);
+				}
+				fragment.appendChild(wordSpan);
+			}
+		});
 		node.parentNode.replaceChild(fragment, node);
 	} else if (node.nodeType === 1) { // Element node
-		if (node.classList.contains('char')) return;
+		if (node.classList.contains('char') || node.classList.contains('word')) return;
 		var child = node.firstChild;
 		while (child) {
 			var next = child.nextSibling;
