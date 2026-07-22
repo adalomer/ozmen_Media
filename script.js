@@ -1,7 +1,11 @@
 /* ===============================================
    OZMEN AGENCY — SLUSH.APP STYLE GSAP ANIMATIONS
    =============================================== */
-gsap.registerPlugin(ScrollTrigger);
+if (typeof ScrollToPlugin !== 'undefined') {
+	gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+} else {
+	gsap.registerPlugin(ScrollTrigger);
+}
 
 /* --- PRELOADER --- */
 var pre = document.getElementById('preloader');
@@ -531,6 +535,10 @@ document.addEventListener('click', function (e) {
 	var target = document.querySelector(href);
 	if (target) {
 		e.preventDefault();
-		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		if (typeof ScrollToPlugin !== 'undefined' && window.gsap) {
+			gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 0.8, ease: 'power2.out' });
+		} else {
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
 	}
 });
