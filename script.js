@@ -531,13 +531,6 @@ document.addEventListener('click', function (e) {
 	var target = document.querySelector(href);
 	if (target) {
 		e.preventDefault();
-		var navHeight = 80;
-		var elementPosition = target.getBoundingClientRect().top;
-		var offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-		window.scrollTo({
-			top: offsetPosition,
-			behavior: 'smooth'
-		});
+		target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 });

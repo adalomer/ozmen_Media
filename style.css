@@ -37,7 +37,7 @@
 
 /* === RESET === */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; -webkit-font-smoothing: antialiased; background: var(--bg-primary); }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; background: var(--bg-primary); scroll-behavior: smooth; }
 body { font-family: var(--f-body); background: var(--bg-primary); color: var(--text-main); overflow-x: hidden; line-height: 1.6; max-width: 100vw; }
 a { text-decoration: none; color: inherit; }
 h1, h2, h3, h4 { font-family: var(--f-display); margin: 0; line-height: 1.2; }
@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5 { font-family: var(--f-display); font-weight: 800; line-heigh
 .anim-slide-right { opacity: 0; transform: translateX(-40px); }
 
 /* === LAYOUT === */
-.story-section { position: relative; width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 140px 32px; overflow-x: hidden; max-width: 100vw; box-sizing: border-box; }
+.story-section { position: relative; width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; padding: 140px 32px; overflow-x: hidden; max-width: 100vw; box-sizing: border-box; scroll-margin-top: 90px; }
 .section-inner { max-width: 1200px; width: 100%; position: relative; z-index: 2; }
 .text-center { text-align: center; }
 .split-layout { display: flex; align-items: center; gap: 80px; flex-wrap: wrap; }
