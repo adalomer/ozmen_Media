@@ -519,25 +519,25 @@ function startAnimations() {
 		});
 	});
 
-	/* ========== SMOOTH ANCHOR SCROLL ========== */
-	document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-		a.addEventListener('click', function (e) {
-			var href = a.getAttribute('href');
-			if (!href || href === '#') return;
-			var target = document.querySelector(href);
-			if (target) {
-				e.preventDefault();
-				var navHeight = 90;
-				var elementPosition = target.getBoundingClientRect().top;
-				var offsetPosition = elementPosition + window.pageYOffset - navHeight;
-
-				window.scrollTo({
-					top: offsetPosition,
-					behavior: 'smooth'
-				});
-			}
-		});
-	});
-
 	setTimeout(function () { ScrollTrigger.refresh(); }, 500);
 }
+
+/* ========== GLOBAL SMOOTH ANCHOR SCROLL ========== */
+document.addEventListener('click', function (e) {
+	var a = e.target.closest('a[href^="#"]');
+	if (!a) return;
+	var href = a.getAttribute('href');
+	if (!href || href === '#') return;
+	var target = document.querySelector(href);
+	if (target) {
+		e.preventDefault();
+		var navHeight = 80;
+		var elementPosition = target.getBoundingClientRect().top;
+		var offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+		window.scrollTo({
+			top: offsetPosition,
+			behavior: 'smooth'
+		});
+	}
+});
