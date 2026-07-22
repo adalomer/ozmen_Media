@@ -180,9 +180,6 @@ h1, h2, h3, h4, h5 { font-family: var(--f-display); font-weight: 800; line-heigh
 .fb-2 { bottom: 15%; left: -40px; animation: fb-bounce 4s ease-in-out infinite alternate-reverse; }
 @keyframes fb-bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-12px); } }
 
-/* === RIBBONS === */
-.ribbons-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; opacity: 0.6; mix-blend-mode: multiply; }
-
 /* === STATS SECTION === */
 .stats-section { min-height: auto; padding: 100px 32px; border-top: 3px solid var(--border-dark); border-bottom: 3px solid var(--border-dark); background: var(--bg-alt); }
 .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 60px; }
