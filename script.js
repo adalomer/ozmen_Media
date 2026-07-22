@@ -1,5 +1,5 @@
 /* ===============================================
-   ÖZMEN MEDIA — SLUSH.APP STYLE GSAP ANIMATIONS
+   OZMEN AGENCY — SLUSH.APP STYLE GSAP ANIMATIONS
    =============================================== */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +11,7 @@ var preInt = setInterval(function () {
 	loaded += Math.random() * 20 + 10;
 	if (loaded >= 100) { loaded = 100; clearInterval(preInt); }
 	fill.style.width = loaded + '%';
-	
+
 	if (loaded >= 100) setTimeout(function () {
 		pre.classList.add('done');
 		document.body.style.overflow = '';
@@ -92,7 +92,7 @@ function initPillNav() {
 	layout();
 	window.addEventListener('resize', layout);
 	if (document.fonts && document.fonts.ready) {
-		document.fonts.ready.then(layout).catch(function () {});
+		document.fonts.ready.then(layout).catch(function () { });
 	}
 
 	// Logo Spin
@@ -140,7 +140,25 @@ function initPillNav() {
 	if (ham) ham.onclick = toggleMenu;
 
 	document.querySelectorAll('.mobile-menu-link').forEach(function (l) {
-		l.onclick = function () { if (isMobileOpen) toggleMenu(); };
+		l.onclick = function (e) {
+			var href = l.getAttribute('href');
+			if (isMobileOpen) toggleMenu();
+			if (href && href.startsWith('#') && href !== '#') {
+				var target = document.querySelector(href);
+				if (target) {
+					e.preventDefault();
+					setTimeout(function () {
+						var navHeight = 90;
+						var elementPosition = target.getBoundingClientRect().top;
+						var offsetPosition = elementPosition + window.pageYOffset - navHeight;
+						window.scrollTo({
+							top: offsetPosition,
+							behavior: 'smooth'
+						});
+					}, 150);
+				}
+			}
+		};
 	});
 }
 
@@ -153,7 +171,7 @@ function wrapCharacters(node) {
 		if (!text.trim()) return;
 		var fragment = document.createDocumentFragment();
 		var words = text.split(/(\s+)/);
-		words.forEach(function(word) {
+		words.forEach(function (word) {
 			if (!word) return;
 			if (word.trim() === '') {
 				fragment.appendChild(document.createTextNode(word));
@@ -189,11 +207,11 @@ function initScrollFloat() {
 	floaters.forEach(function (el) {
 		var textWrap = el.querySelector('.scroll-float-text');
 		if (!textWrap) return;
-		
+
 		wrapCharacters(textWrap);
 
 		var chars = el.querySelectorAll('.char');
-		if(chars.length === 0) return;
+		if (chars.length === 0) return;
 
 		var isHero = el.classList.contains('hero-title') || el.classList.contains('hero-desc');
 
@@ -317,106 +335,106 @@ function initRibbons() {
 	`;
 
 	function resize() {
-	  var width = container.clientWidth;
-	  var height = container.clientHeight;
-	  renderer.setSize(width, height);
-	  lines.forEach(function(line) { line.polyline.resize(); });
+		var width = container.clientWidth;
+		var height = container.clientHeight;
+		renderer.setSize(width, height);
+		lines.forEach(function (line) { line.polyline.resize(); });
 	}
 	window.addEventListener('resize', resize);
 
 	var center = (colors.length - 1) / 2;
-	colors.forEach(function(color, index) {
-	  var spring = baseSpring + (Math.random() - 0.5) * 0.05;
-	  var friction = baseFriction + (Math.random() - 0.5) * 0.05;
-	  var thickness = baseThickness + (Math.random() - 0.5) * 3;
-	  var mouseOffset = new Vec3(
-		(index - center) * offsetFactor + (Math.random() - 0.5) * 0.01,
-		(Math.random() - 0.5) * 0.1,
-		0
-	  );
+	colors.forEach(function (color, index) {
+		var spring = baseSpring + (Math.random() - 0.5) * 0.05;
+		var friction = baseFriction + (Math.random() - 0.5) * 0.05;
+		var thickness = baseThickness + (Math.random() - 0.5) * 3;
+		var mouseOffset = new Vec3(
+			(index - center) * offsetFactor + (Math.random() - 0.5) * 0.01,
+			(Math.random() - 0.5) * 0.1,
+			0
+		);
 
-	  var line = {
-		spring: spring,
-		friction: friction,
-		mouseVelocity: new Vec3(),
-		mouseOffset: mouseOffset
-	  };
+		var line = {
+			spring: spring,
+			friction: friction,
+			mouseVelocity: new Vec3(),
+			mouseOffset: mouseOffset
+		};
 
-	  var points = [];
-	  for (var i = 0; i < pointCount; i++) {
-		points.push(new Vec3());
-	  }
-	  line.points = points;
-
-	  line.polyline = new Polyline(gl, {
-		points: points,
-		vertex: vertex,
-		fragment: fragment,
-		uniforms: {
-		  uColor: { value: new Color(color) },
-		  uThickness: { value: thickness },
-		  uOpacity: { value: 1.0 },
-		  uTime: { value: 0.0 },
-		  uEnableShaderEffect: { value: enableShaderEffect ? 1.0 : 0.0 },
-		  uEffectAmplitude: { value: effectAmplitude },
-		  uEnableFade: { value: enableFade ? 1.0 : 0.0 }
+		var points = [];
+		for (var i = 0; i < pointCount; i++) {
+			points.push(new Vec3());
 		}
-	  });
-	  line.polyline.mesh.setParent(scene);
-	  lines.push(line);
+		line.points = points;
+
+		line.polyline = new Polyline(gl, {
+			points: points,
+			vertex: vertex,
+			fragment: fragment,
+			uniforms: {
+				uColor: { value: new Color(color) },
+				uThickness: { value: thickness },
+				uOpacity: { value: 1.0 },
+				uTime: { value: 0.0 },
+				uEnableShaderEffect: { value: enableShaderEffect ? 1.0 : 0.0 },
+				uEffectAmplitude: { value: effectAmplitude },
+				uEnableFade: { value: enableFade ? 1.0 : 0.0 }
+			}
+		});
+		line.polyline.mesh.setParent(scene);
+		lines.push(line);
 	});
 
 	resize();
 
 	var mouse = new Vec3();
 	function updateMouse(e) {
-	  var x, y;
-	  var rect = container.getBoundingClientRect();
-	  if (e.changedTouches && e.changedTouches.length) {
-		x = e.changedTouches[0].clientX - rect.left;
-		y = e.changedTouches[0].clientY - rect.top;
-	  } else {
-		x = e.clientX - rect.left;
-		y = e.clientY - rect.top;
-	  }
-	  var width = container.clientWidth;
-	  var height = container.clientHeight;
-	  mouse.set((x / width) * 2 - 1, (y / height) * -2 + 1, 0);
+		var x, y;
+		var rect = container.getBoundingClientRect();
+		if (e.changedTouches && e.changedTouches.length) {
+			x = e.changedTouches[0].clientX - rect.left;
+			y = e.changedTouches[0].clientY - rect.top;
+		} else {
+			x = e.clientX - rect.left;
+			y = e.clientY - rect.top;
+		}
+		var width = container.clientWidth;
+		var height = container.clientHeight;
+		mouse.set((x / width) * 2 - 1, (y / height) * -2 + 1, 0);
 	}
 	window.addEventListener('mousemove', updateMouse);
-	window.addEventListener('touchstart', updateMouse, {passive: true});
-	window.addEventListener('touchmove', updateMouse, {passive: true});
+	window.addEventListener('touchstart', updateMouse, { passive: true });
+	window.addEventListener('touchmove', updateMouse, { passive: true });
 
 	var tmp = new Vec3();
 	var lastTime = performance.now();
-	
+
 	function update() {
-	  requestAnimationFrame(update);
-	  var currentTime = performance.now();
-	  var dt = currentTime - lastTime;
-	  lastTime = currentTime;
+		requestAnimationFrame(update);
+		var currentTime = performance.now();
+		var dt = currentTime - lastTime;
+		lastTime = currentTime;
 
-	  lines.forEach(function(line) {
-		tmp.copy(mouse).add(line.mouseOffset).sub(line.points[0]).multiply(line.spring);
-		line.mouseVelocity.add(tmp).multiply(line.friction);
-		line.points[0].add(line.mouseVelocity);
+		lines.forEach(function (line) {
+			tmp.copy(mouse).add(line.mouseOffset).sub(line.points[0]).multiply(line.spring);
+			line.mouseVelocity.add(tmp).multiply(line.friction);
+			line.points[0].add(line.mouseVelocity);
 
-		for (var i = 1; i < line.points.length; i++) {
-		  if (maxAge > 0) {
-			var segmentDelay = maxAge / (line.points.length - 1);
-			var alpha = Math.min(1, (dt * speedMultiplier) / segmentDelay);
-			line.points[i].lerp(line.points[i - 1], alpha);
-		  } else {
-			line.points[i].lerp(line.points[i - 1], 0.9);
-		  }
-		}
-		if (line.polyline.mesh.program.uniforms.uTime) {
-		  line.polyline.mesh.program.uniforms.uTime.value = currentTime * 0.001;
-		}
-		line.polyline.updateGeometry();
-	  });
+			for (var i = 1; i < line.points.length; i++) {
+				if (maxAge > 0) {
+					var segmentDelay = maxAge / (line.points.length - 1);
+					var alpha = Math.min(1, (dt * speedMultiplier) / segmentDelay);
+					line.points[i].lerp(line.points[i - 1], alpha);
+				} else {
+					line.points[i].lerp(line.points[i - 1], 0.9);
+				}
+			}
+			if (line.polyline.mesh.program.uniforms.uTime) {
+				line.polyline.mesh.program.uniforms.uTime.value = currentTime * 0.001;
+			}
+			line.polyline.updateGeometry();
+		});
 
-	  renderer.render({ scene: scene });
+		renderer.render({ scene: scene });
 	}
 	update();
 }
@@ -427,16 +445,16 @@ function initRibbons() {
 function startAnimations() {
 
 	initScrollFloat();
-	if (window.ogl) { 
-		initRibbons(); 
-	} else { 
+	if (window.ogl) {
+		initRibbons();
+	} else {
 		window.addEventListener('ogl-ready', initRibbons);
 	}
 
 	/* ========== HERO ENTRANCE ========== */
 	// Bouncy Slush style entrance
 	var heroTl = gsap.timeline({ defaults: { ease: 'back.out(1.7)' } });
-	
+
 	heroTl
 		.to('.hero-badge', { opacity: 1, scale: 1, duration: 0.7 })
 		.to('.hero-btns', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5')
@@ -459,8 +477,8 @@ function startAnimations() {
 
 	/* ========== SCROLL REVEALS ========== */
 	var sections = gsap.utils.toArray('.story-section:not(#hero)');
-	
-	sections.forEach(function(sec) {
+
+	sections.forEach(function (sec) {
 		var tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: sec,
@@ -470,30 +488,30 @@ function startAnimations() {
 		});
 
 		var tags = sec.querySelectorAll('.tag-slush');
-		if(tags.length) tl.to(tags, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' });
+		if (tags.length) tl.to(tags, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' });
 
 		var pops = sec.querySelectorAll('.anim-pop');
-		if(pops.length) tl.to(pops, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.3');
+		if (pops.length) tl.to(pops, { opacity: 1, scale: 1, duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.3');
 
 		var slides = sec.querySelectorAll('.anim-slide-right');
-		if(slides.length) tl.to(slides, { opacity: 1, x: 0, duration: 0.7, stagger: 0.15, ease: 'back.out(1.2)' }, '-=0.5');
-		
+		if (slides.length) tl.to(slides, { opacity: 1, x: 0, duration: 0.7, stagger: 0.15, ease: 'back.out(1.2)' }, '-=0.5');
+
 		var fades = sec.querySelectorAll('.anim-fade-up');
-		if(fades.length) tl.to(fades, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, '-=0.5');
+		if (fades.length) tl.to(fades, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, '-=0.5');
 	});
 
 	/* ========== STATS COUNTER ========== */
 	document.querySelectorAll('.stat-num').forEach(function (el) {
 		var t = parseInt(el.getAttribute('data-count'));
 		ScrollTrigger.create({
-			trigger: el, 
-			start: 'top 85%', 
+			trigger: el,
+			start: 'top 85%',
 			once: true,
 			onEnter: function () {
 				gsap.to(el, {
-					innerText: t, 
-					duration: 2, 
-					snap: { innerText: 1 }, 
+					innerText: t,
+					duration: 2,
+					snap: { innerText: 1 },
 					ease: 'power2.out',
 					modifiers: { innerText: function (v) { return Math.round(v); } }
 				});
@@ -504,13 +522,18 @@ function startAnimations() {
 	/* ========== SMOOTH ANCHOR SCROLL ========== */
 	document.querySelectorAll('a[href^="#"]').forEach(function (a) {
 		a.addEventListener('click', function (e) {
-			var target = document.querySelector(a.getAttribute('href'));
+			var href = a.getAttribute('href');
+			if (!href || href === '#') return;
+			var target = document.querySelector(href);
 			if (target) {
 				e.preventDefault();
-				gsap.to(window, {
-					scrollTo: { y: target, offsetY: 70 },
-					duration: 1, 
-					ease: 'power3.inOut'
+				var navHeight = 90;
+				var elementPosition = target.getBoundingClientRect().top;
+				var offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
 				});
 			}
 		});

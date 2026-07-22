@@ -1,10 +1,10 @@
-# Özmen Media — Professional Digital Agency
+# ozmenAgency — Professional Digital Agency
 
 *[Read in Turkish / Türkçe Oku](#türkçe-versiyon)*
 
-[![Özmen Media](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
+[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
 
-**Özmen Media** is a creative digital agency offering professional social media management and consulting services. This project is a dynamic, animated, and interactive landing page website showcasing the agency's services, client success stories, and vision.
+**ozmenAgency** is a creative digital agency offering professional social media management and consulting services. This project is a dynamic, animated, and interactive landing page website showcasing the agency's services, client success stories, and vision.
 
 ## 🚀 Live Demo
 You can view the live site at **[ozmenmedia.momez.co](https://ozmenmedia.momez.co)**.
@@ -33,13 +33,13 @@ You can view the live site at **[ozmenmedia.momez.co](https://ozmenmedia.momez.c
 
 <br>
 
-<h1 id="türkçe-versiyon">Özmen Media — Profesyonel Dijital Ajans</h1>
+<h1 id="türkçe-versiyon">ozmenAgency — Profesyonel Dijital Ajans</h1>
 
-*[Read in English / İngilizce Oku](#özmen-media--professional-digital-agency)*
+*[Read in English / İngilizce Oku](#ozmenagency--professional-digital-agency)*
 
-[![Özmen Media](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
+[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
 
-**Özmen Media**, profesyonel sosyal medya yönetimi ve danışmanlık hizmetleri sunan yaratıcı bir dijital ajanstır. Bu proje, ajansın sunduğu hizmetleri, müşteri başarı hikayelerini ve vizyonunu sergileyen dinamik, animasyonlu ve etkileşimli bir tanıtım (landing page) web sitesidir.
+**ozmenAgency**, profesyonel sosyal medya yönetimi ve danışmanlık hizmetleri sunan yaratıcı bir dijital ajanstır. Bu proje, ajansın sunduğu hizmetleri, müşteri başarı hikayelerini ve vizyonunu sergileyen dinamik, animasyonlu ve etkileşimli bir tanıtım (landing page) web sitesidir.
 
 ## 🚀 Canlı Demo
 **[ozmenmedia.momez.co](https://ozmenmedia.momez.co)** adresinden siteyi canlı olarak inceleyebilirsiniz.

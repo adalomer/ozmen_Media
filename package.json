@@ -1,7 +1,7 @@
 {
-	"name": "ozmen-media",
+	"name": "ozmen-agency",
 	"version": "1.0.0",
-	"description": "Özmen Media — Sosyal Medya Çözümleri",
+	"description": "ozmenAgency — Sosyal Medya Çözümleri",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
