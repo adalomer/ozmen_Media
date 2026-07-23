@@ -208,7 +208,7 @@ h1, h2, h3, h4, h5 { font-family: var(--f-display); font-weight: 800; line-heigh
 /* === CLIENTS === */
 .clients-section { padding: 120px 32px !important; }
 .clients-section .section-desc { max-width: 600px; }
-.clients-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 60px; }
+.clients-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 60px; }
 .client-card { display: flex; flex-direction: column; align-items: stretch; padding: 0; background: var(--card-bg); border: 3px solid var(--border-dark); border-radius: var(--r-xl); box-shadow: 6px 6px 0px var(--border-dark); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); text-decoration: none; position: relative; overflow: hidden; }
 .client-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--red), var(--blue)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
 .client-card:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 10px 10px 0px var(--border-dark); }
@@ -228,12 +228,23 @@ h1, h2, h3, h4, h5 { font-family: var(--f-display); font-weight: 800; line-heigh
 .client-instagram { position: absolute; top: 16px; right: 16px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); display: flex; align-items: center; justify-content: center; color: white; border: 3px solid var(--border-dark); box-shadow: 3px 3px 0px var(--border-dark); transition: all 0.3s ease; }
 .client-card:hover .client-instagram { transform: scale(1.15) rotate(10deg); box-shadow: 5px 5px 0px var(--border-dark); }
 
-@media (max-width: 900px) {
-	.clients-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+@media (max-width: 1200px) {
+	.clients-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
 }
-@media (max-width: 600px) {
-	.clients-grid { grid-template-columns: 1fr; gap: 20px; }
-	.client-card { padding: 0; }
+@media (max-width: 900px) {
+	.clients-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+}
+@media (max-width: 650px) {
+	.clients-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 36px; }
+	.clients-section { padding: 60px 16px !important; }
+	.client-card { border-width: 2px; box-shadow: 4px 4px 0px var(--border-dark); border-radius: 16px; }
+	.client-card:hover { transform: translateY(-4px); box-shadow: 6px 6px 0px var(--border-dark); }
+	.client-avatar { border-bottom-width: 2px; }
+	.client-info { padding: 10px 6px; }
+	.client-name { font-size: 0.85rem; margin-bottom: 2px; word-break: break-word; }
+	.client-category { font-size: 0.65rem; letter-spacing: 0.5px; }
+	.client-instagram { width: 30px; height: 30px; top: 8px; right: 8px; border-width: 2px; box-shadow: 2px 2px 0px var(--border-dark); }
+	.client-instagram svg { width: 14px; height: 14px; }
 }
 
 /* === TEAM === */
