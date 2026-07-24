@@ -7,7 +7,7 @@
 **ozmenAgency** is a creative digital agency offering professional social media management and consulting services. This project is a dynamic, animated, and interactive landing page website showcasing the agency's services, client success stories, and vision.
 
 ## 🚀 Live Demo
-You can view the live site at **[ozmenmedia.momez.co](https://ozmenmedia.momez.co)**.
+You can view the live site at **[ozmenagency.com](https://ozmenagency.com)**.
 
 ## ✨ Features
 - **Dynamic Animations:** Fluid, scroll-triggered page transitions developed using the GSAP (GreenSock) library.
@@ -37,7 +37,7 @@ You can view the live site at **[ozmenmedia.momez.co](https://ozmenmedia.momez.c
 
 *[Read in English / İngilizce Oku](#ozmenagency--professional-digital-agency)*
 
-[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
+[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenagency.com)
 
 **ozmenAgency**, profesyonel sosyal medya yönetimi ve danışmanlık hizmetleri sunan yaratıcı bir dijital ajanstır. Bu proje, ajansın sunduğu hizmetleri, müşteri başarı hikayelerini ve vizyonunu sergileyen dinamik, animasyonlu ve etkileşimli bir tanıtım (landing page) web sitesidir.
 
