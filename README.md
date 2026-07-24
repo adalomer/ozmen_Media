@@ -2,7 +2,7 @@
 
 *[Read in Turkish / Türkçe Oku](#türkçe-versiyon)*
 
-[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenmedia.momez.co)
+[![ozmenAgency](https://image.thum.io/get/width/1200/crop/800/https://ozmenmedia.momez.co)](https://ozmenagency.com)
 
 **ozmenAgency** is a creative digital agency offering professional social media management and consulting services. This project is a dynamic, animated, and interactive landing page website showcasing the agency's services, client success stories, and vision.
 
