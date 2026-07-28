@@ -42,7 +42,7 @@ You can view the live site at **[ozmenagency.com](https://ozmenagency.com)**.
 **ozmenAgency**, profesyonel sosyal medya yönetimi ve danışmanlık hizmetleri sunan yaratıcı bir dijital ajanstır. Bu proje, ajansın sunduğu hizmetleri, müşteri başarı hikayelerini ve vizyonunu sergileyen dinamik, animasyonlu ve etkileşimli bir tanıtım (landing page) web sitesidir.
 
 ## 🚀 Canlı Demo
-**[ozmenmedia.momez.co](https://ozmenmedia.momez.co)** adresinden siteyi canlı olarak inceleyebilirsiniz.
+**[ozmenagency.com](https://ozmenagency.com)** adresinden siteyi canlı olarak inceleyebilirsiniz.
 
 ## ✨ Özellikler
 - **Dinamik Animasyonlar:** GSAP (GreenSock) kullanılarak geliştirilen scroll (kaydırma) tetiklemeli akıcı sayfa geçişleri.
