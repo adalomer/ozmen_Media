@@ -29,6 +29,24 @@ You can view the live site at **[ozmenagency.com](https://ozmenagency.com)**.
 - `script.js` — Interactions, GSAP animations, and other logical operations
 - `img/` — Assets used in the project (logos, client avatars, mascot, etc.)
 
+## Yönetim paneli
+
+Müşteriler artık `/admin` adresindeki şifreli panelden yönetilir. Panel yeni müşteri ve görsel ekleme, kayıt düzenleme, sıralama, silme ve aktif/pasif yayın kontrolü sunar. Yalnızca aktif müşteriler ana sitede görünür.
+
+Yerel çalıştırma:
+
+```bash
+cp .env.example .env
+# .env içindeki şifre ve SESSION_SECRET değerlerini değiştirin.
+npm install
+set -a && . ./.env && set +a
+npm run dev
+```
+
+Site `http://localhost:3000`, panel ise `http://localhost:3000/admin` adresinde açılır. Canlı ortamda `ADMIN_PASSWORD` ve en az 32 karakterlik rastgele `SESSION_SECRET` zorunludur. `.data` ve `uploads` dizinleri kalıcı diskte tutulmalıdır. Docker dağıtımında bunun için `/app/storage` volume'u tanımlanmıştır.
+
+Docker ile çalıştırmak için `.env.example` dosyasını `.env` olarak kopyalayıp güvenli değerleri girdikten sonra `docker compose up -d --build` komutunu kullanın. Domain/proxy ayarında dış trafiği uygulamanın `3000` portuna yönlendirin.
+
 ---
 
 <br>

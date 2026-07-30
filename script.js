@@ -340,3 +340,48 @@ document.addEventListener('click', function (e) {
 		}
 	}
 });
+
+/* ========== WA FLOATING BADGE CHARACTER ANIMATION ========== */
+function initWaBadgeAnimation() {
+	var waTextEl = document.querySelector('.wa-badge-text');
+	if (!waTextEl || waTextEl.getAttribute('data-animated') === 'true') return;
+	waTextEl.setAttribute('data-animated', 'true');
+
+	var text = waTextEl.textContent.trim();
+	waTextEl.innerHTML = text.split('').map(function (char) {
+		return '<span class="wa-char" style="display:inline-block; opacity:1; transform:none;">' + (char === ' ' ? '&nbsp;' : char) + '</span>';
+	}).join('');
+
+	var chars = waTextEl.querySelectorAll('.wa-char');
+	if (typeof gsap !== 'undefined') {
+		function animateWaBadge() {
+			gsap.fromTo(chars,
+				{ opacity: 0, y: 8 },
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.35,
+					stagger: 0.04,
+					ease: 'back.out(2)',
+					onComplete: function () {
+						gsap.to(chars, {
+							opacity: 0,
+							y: -6,
+							duration: 0.3,
+							delay: 3.5,
+							stagger: 0.02,
+							onComplete: animateWaBadge
+						});
+					}
+				}
+			);
+		}
+		animateWaBadge();
+	}
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initWaBadgeAnimation);
+} else {
+	initWaBadgeAnimation();
+}

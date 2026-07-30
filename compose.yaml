@@ -1,0 +1,13 @@
+services:
+  ozmenagency:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - ozmenagency_storage:/app/storage
+
+volumes:
+  ozmenagency_storage:
