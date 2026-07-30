@@ -154,8 +154,8 @@ app.post('/api/admin/login', sameOrigin, loginRateLimit, (req, res) => {
     return res.status(401).json({ error: 'Kullanıcı adı veya şifre hatalı.' });
   }
   loginAttempts.delete(req.ip);
-  const expires = Date.now() + 8 * 60 * 60_000;
-  res.cookie('ozmen_admin', sessionToken(expires), { httpOnly: true, secure: isProduction, sameSite: 'strict', maxAge: 8 * 60 * 60_000, path: '/' });
+  const expires = Date.now() + 2 * 60 * 60_000;
+  res.cookie('ozmen_admin', sessionToken(expires), { httpOnly: true, secure: isProduction, sameSite: 'strict', maxAge: 2 * 60 * 60_000, path: '/' });
   res.json({ username: adminUsername });
 });
 

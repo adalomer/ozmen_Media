@@ -43,7 +43,7 @@ set -a && . ./.env && set +a
 npm run dev
 ```
 
-Site `http://localhost:3000`, panel ise `http://localhost:3000/admin` adresinde açılır. Canlı ortamda `ADMIN_PASSWORD` ve en az 32 karakterlik rastgele `SESSION_SECRET` zorunludur. `.data` ve `uploads` dizinleri kalıcı diskte tutulmalıdır. Docker dağıtımında bunun için `/app/storage` volume'u tanımlanmıştır.
+Site `http://localhost:3000`, panel ise `http://localhost:3000/admin` adresinde açılır. Canlı ortamda `ADMIN_PASSWORD` ve en az 32 karakterlik rastgele `SESSION_SECRET` zorunludur. `.data` ve `uploads` dizinleri kalıcı diskte tutulmalıdır. Docker dağıtımında bunun için `/app/storage` volume'u tanımlanmıştır. Compose yapılandırması uygulama portunu yalnızca `127.0.0.1` üzerinde açar; canlı erişim Nginx gibi bir ters proxy üzerinden sağlanmalıdır.
 
 Docker ile çalıştırmak için `.env.example` dosyasını `.env` olarak kopyalayıp güvenli değerleri girdikten sonra `docker compose up -d --build` komutunu kullanın. Domain/proxy ayarında dış trafiği uygulamanın `3000` portuna yönlendirin.
 
